@@ -6,6 +6,12 @@
 
 # rendered output
 *.svg
+# but keep the example SVGs embedded in the Doxygen mainpage
+!/doxy/images/*.svg
+
+# generated documentation
+/doxy/docs/doxygen/
+/doxy/*.log
 
 # editor / OS
 .theia/

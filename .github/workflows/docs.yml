@@ -1,0 +1,37 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches: [staging]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  # Doxygen — single-page API reference + mainpage with the embedded example
+  # plots. Source lives on `staging`; the rendered html publishes to the
+  # gh-pages root.
+  deploy-doxygen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install Doxygen + Graphviz
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y doxygen graphviz
+
+      - name: Build Doxygen documentation
+        run: doxygen Doxyfile
+        working-directory: doxy
+
+      - name: Deploy Doxygen to gh-pages root
+        if: github.event_name == 'push'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./doxy/docs/doxygen/html
+          destination_dir: .
+          keep_files: true
