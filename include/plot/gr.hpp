@@ -184,8 +184,12 @@ namespace plot::impl {
 		canvas_t canvas(os, width, height, margin);
 
 		// reserved gutters (px) for the axes/labels/title.
+		const float tick_char = 0.60f * 9.0f;   // Ubuntu Mono tick-label advance at 9px
 		const float left   = 56.0f;
-		const float right  = 14.0f;
+		// widen the right gutter to fit the last x-tick label: the canvas draws it
+		// left-anchored at the rightmost tick, so a fixed gutter clips wide labels.
+		const float right  = std::max(14.0f, sx.labels.empty() ? 14.0f
+				: tick_char * float(sx.labels.back().size()) + 8.0f);
 		const float top    = title.empty() ? 18.0f : 34.0f;
 		const float bottom = 44.0f;
 		const float x0 = left;
@@ -214,7 +218,6 @@ namespace plot::impl {
 		// canvas, so the y labels are placed by their (monospace) width so their
 		// right edge lands `label_gap` px left of the axis — matching the bottom.
 		const float label_gap = 14.0f;
-		const float tick_char = 0.60f * 9.0f;   // Ubuntu Mono advance at 9px
 		for(std::size_t i=0;i<sx.ticks.size();++i){
 			float X = px(sx.ticks[i]);
 			canvas.line(X, y0, X, y0+ph, grid_attr);

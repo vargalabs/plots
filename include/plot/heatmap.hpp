@@ -192,6 +192,14 @@ namespace plot {
 		auto x_axis = std::get<axisx_t::position>( tuple );
 		auto y_axis = std::get<axisy_t::position>( tuple );
 
+		// when a title is present, push the x-axis (and thus the grid below it)
+		// down by a band so the title sits above the ticks instead of overlapping
+		// the top of the x-axis. The canvas auto-grows in height to match.
+		if constexpr( title_t::present ){
+			x_axis.position = position{ std::get<std::size_t>(x_axis.position->x),
+				std::get<std::size_t>(x_axis.position->y) + std::size_t{14} };
+		}
+
 		float offset_x = std::get<std::size_t>(x_axis.position->x) - .5f * x_axis.grid;
 		float offset_y = std::get<std::size_t>(x_axis.position->y) + .5f * y_axis.grid;
 		// when y axis label position is not preset, compute it from x layout
