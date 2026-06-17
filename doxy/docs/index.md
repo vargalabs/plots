@@ -12,36 +12,67 @@ axes and canvas size, and ships with Solarized light/dark themes out of the box.
 
 int main(){
     plot::theme(plot::solarized_dark);            // process-global default theme
+    std::vector<double> x{ 1e3, 4e3, 16e3, 64e3, 256e3, 1e6 },
+      scalar{ 820, 1500, 2600, 3400, 3900, 4100 },
+      simd  { 1900, 4100, 7200, 9800, 11500, 12200 };
 
-    std::vector<double> x{ 1e3, 4e3, 16e3, 64e3, 256e3, 1e6 };
-    std::vector<double> scalar{ 820, 1500, 2600, 3400, 3900, 4100 };
-    std::vector<double> simd  { 1900, 4100, 7200, 9800, 11500, 12200 };
-
-    plot::line(std::string("throughput.svg"), x,
-        { { "scalar", scalar }, { "simd", simd } },
-        plot::title("throughput vs payload size"),
-        plot::xlabel{"payload [bytes]"}, plot::ylabel{"throughput [MB/s]"},
-        plot::xlog{10.0},
-        plot::width{720}, plot::height{440});
+    plot::line(std::string("throughput.svg"), x, {{ "scalar", scalar }, { "simd", simd }},
+        plot::title("throughput vs payload size"),  plot::xlabel{"payload [bytes]"}, plot::ylabel{"throughput [MB/s]"},
+        plot::xlog{10.0},  plot::width{720}, plot::height{440});
 }
 ```
+## Plots
+  - `plot::line(os|"file.svg", xs, ys, opts...)` — single line series, `ys` vs `xs` (both `std::vector`); axes auto-scaled. Multi-series form: `plot::line(os|"file.svg", xs, {{"label", data}, ...}, opts...)` draws one line per series with a legend.
+  - `plot::scatter(os|"file.svg", xs, ys, opts...)` — scatter of points, `ys` vs `xs`; axes auto-scaled.
+  - `plot::heatmap(os|"file.svg", mat, plot::axis::x(xlabels), plot::axis::y(ylabels), opts...)` — 2-D grid colored by cell value. `mat` is a `plot::mat<T>{ ptr, rows, cols }` (row-major view); floating-point → continuous gradient, integral → categorical.
+  `axis::x`/`axis::y` tick labels are required.
+  
+  Where the first argument is a `std::ostream&` OR a filename, followed by the data, then
+  the named `opts...` (`title`, `xlabel`, `ylabel`, `xlog`, `ylog`, `width`, `height`,
+  `use{theme}`) in any order. The active theme is the global `plot::theme(...)` default,
+  or a per-call `plot::use{ plot::solarized_light }` override.
+  
+  Accuracy notes from the headers:
+  - Each driver has a std::ostream& overload and a filename (std::string) overload — the filename one just opens a truncating ofstream.
+  - plot::line is the only one with the {{"label", data}, …} multi-series overload (each series is a {std::string, std::vector<double>}); scatter/heatmap are single-data.
+  - heatmap is the one that requires plot::axis::x/axis::y (static-asserted); line/scatter derive their axes from the data and instead take xlabel/ylabel.
+ 
+
+## Options (pythonic syntax)
+
+- `plot::title("Throughput vs size")` — chart title (string); optional 2nd arg `plot::position{x,y}` and a font.
+- `plot::xlabel{"payload [bytes]"}` — x-axis label (string).
+- `plot::ylabel{"throughput [MB/s]"}` — y-axis label (string).
+- `plot::xlog{10.0}` — log-scale the x-axis; arg is the log base (default `10.0`, use `plot::xlog{2.0}` for log2). `plot::ylog{...}` is the y-axis analogue.
+- `plot::width{720}` — canvas width in pixels.
+- `plot::height{440}` — canvas height in pixels.
+- `plot::axis::x(std::vector<std::string>{"1K","4K","16K","1M"})` — x-axis tick labels (heatmap).
+- `plot::axis::y(std::vector<std::string>{"int","float","double"})` — y-axis tick labels (heatmap).
+
+All of the above are passed as named options **in any order** after the positional arguments (`os`/filename, then the data). e.g.:
+```cpp
+  plot::line("bw.svg", xs, ys,
+      plot::ylabel{"MB/s"}, plot::title("bandwidth"),   // any order
+      plot::xlog{10.0}, plot::xlabel{"bytes"}, plot::width{720}, plot::height{440});
+```
+Two accuracy notes from the actual headers:
+- Brace vs. parens: xlabel/ylabel/xlog/ylog/width/height are aggregates → brace-init {…}. title and axis::x/axis::y are constructed → use parens (…).
+- Where each applies: title/xlabel/ylabel/xlog/width/height are for plot::line/plot::scatter (auto-scaled axes), where xlabel/ylabel name the axes. plot::heatmap uses plot::axis::x/y (the tick labels are required there) plus title. So axis::x/y and xlabel/ylabel are the heatmap-vs-line/scatter counterparts, not interchangeable.
+
 
 ## Features
 
-- **GR-style API** — one call per chart (`plot::line` / `plot::scatter` /
-  `plot::heatmap`) with order-free named arguments
-  (`plot::title`, `plot::xlabel`, `plot::ylabel`, `plot::xlog`,
-  `plot::width`, `plot::height`, `plot::axis::x/y`).
-- **Solarized themes** — `plot::solarized_dark` and `plot::solarized_light`
-  presets; set a process-global default with `plot::theme(...)` or override a
-  single render with `plot::use{...}`. A `plot::theme_t` carries structural
-  colours, a cycled categorical series palette, and a 3-stop continuous gradient
+- **GR-style API** — one call per chart (`plot::line` / `plot::scatter` / `plot::heatmap`) with order-free named arguments
+  (`plot::title`, `plot::xlabel`, `plot::ylabel`, `plot::xlog`, `plot::width`, `plot::height`, `plot::axis::x/y`).
+- **Solarized themes** — `plot::solarized_dark` and `plot::solarized_light`  presets; set a process-global default with `plot::theme(...)` or override a
+  single render with `plot::use{...}`. A `plot::theme_t` carries structural   colours, a cycled categorical series palette, and a 3-stop continuous gradient
   used by the heatmap.
-- **Dependency-free C++23** — standard library only; no runtime, no linking.
-  Output is a single static `.svg` you can open in any browser or embed inline.
-- **`find_package` friendly** — header-only `plot::plot` INTERFACE target with an
-  installed CMake package config; just `find_package(plot)` and link
+
+- **Dependency-free C++23** — standard library only; no runtime, no linking.  Output is a single static `.svg` you can open in any browser or embed inline.
+- **`find_package` friendly** — header-only `plot::plot` INTERFACE target with an   installed CMake package config; just `find_package(plot)` and link
   `plot::plot`.
+
+
 
 ## Examples
 
@@ -50,9 +81,7 @@ each emit one of the charts below.
 
 ### Line chart — `plot::line`
 
-Multi-series throughput on a log-x axis, Solarized dark.
-
-@image html line_chart.svg "Multi-series line chart on a log-x axis"
+Multi-series throughput on a log-x axis, Solarized dark. @image html line_chart.svg "Multi-series line chart on a log-x axis"
 
 ### Scatter — `plot::scatter`
 

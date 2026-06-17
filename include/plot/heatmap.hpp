@@ -222,9 +222,17 @@ namespace plot {
 		// theme background spanning the whole canvas (painted first, under all).
 		{ plot::attribute::element_t bg; bg.color = plot::attribute::color_t{ th.bg };
 		  canvas.rect(0, 0, static_cast<float>(width), static_cast<float>(height + 10), 0, 0, bg); }
+		// colour the axis tick labels with the theme foreground — otherwise the
+		// <text> inherits the SVG default (black), invisible on a dark theme.
+		x_axis.color = plot::attribute::color_t{ th.fg };
+		y_axis.color = plot::attribute::color_t{ th.fg };
 		canvas << x_axis; canvas << y_axis;
 
-		if constexpr (title_t::present)    canvas << std::get<title_t::position>( tuple );
+		if constexpr (title_t::present) {
+			auto title = std::get<title_t::position>( tuple );
+			if( !title.color ) title.color = plot::attribute::color_t{ th.fg };
+			canvas << title;
+		}
 		if constexpr (footnote_t::present) canvas << std::get<footnote_t::position>( tuple );
 
 		plot::attribute::color_t palette{ 0x4060FF };
