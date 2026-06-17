@@ -1,0 +1,15 @@
+# build
+/build/
+/cmake-build-*/
+*.o
+*.a
+
+# rendered output
+*.svg
+
+# editor / OS
+.theia/
+.vscode/
+.idea/
+*.swp
+.DS_Store
