@@ -1,0 +1,142 @@
+name: Package
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: package-${{ github.ref }}
+  cancel-in-progress: true
+
+# plot is header-only and dependency-free, so the package payload is just the
+# amalgamated single header (plot.hpp) + LICENSE. Each job configures with
+# -DPLOT_INSTALL_FULL=OFF and builds only the `plot-amalgamate` target.
+env:
+  CMAKE_ARGS: >-
+    -DCMAKE_BUILD_TYPE=Release
+    -DPLOT_INSTALL_FULL=OFF
+    -DPLOTS_BUILD_TESTS=OFF
+    -DPLOTS_BUILD_EXAMPLES=OFF
+
+jobs:
+  # ── Linux: DEB (Debian) + RPM (RedHat) + tar.gz + zip ───────────────────────
+  package-linux:
+    name: linux / DEB + RPM + tar.gz + zip
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install rpmbuild
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends rpm
+      - name: Configure
+        run: cmake -B build ${{ env.CMAKE_ARGS }}
+      - name: Build amalgamation
+        run: cmake --build build --target plot-amalgamate
+      - name: Package
+        run: |
+          cd build
+          cpack -G DEB
+          cpack -G RPM
+          cpack -G TGZ
+          cpack -G ZIP
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packages-linux
+          path: |
+            build/*.deb
+            build/*.rpm
+            build/*.tar.gz
+            build/*.zip
+          if-no-files-found: error
+
+  # ── macOS: productbuild (.pkg) ──────────────────────────────────────────────
+  package-macos:
+    name: macos / pkg
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Configure
+        run: cmake -B build ${{ env.CMAKE_ARGS }}
+      - name: Build amalgamation
+        run: cmake --build build --target plot-amalgamate
+      - name: Package
+        run: cd build && cpack -G productbuild
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packages-macos
+          path: build/*.pkg
+          if-no-files-found: error
+
+  # ── Windows: NSIS (.exe) ────────────────────────────────────────────────────
+  package-windows:
+    name: windows / NSIS
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install NSIS
+        shell: powershell
+        run: |
+          # CPack -G NSIS needs makensis on PATH; chocolatey installs it.
+          choco install nsis -y --no-progress
+          $nsisDir = "C:\Program Files (x86)\NSIS"
+          if (-not (Test-Path "$nsisDir\makensis.exe")) { $nsisDir = "C:\Program Files\NSIS" }
+          if (-not (Test-Path "$nsisDir\makensis.exe")) { throw "makensis.exe not found after NSIS install" }
+          Add-Content -Path $env:GITHUB_PATH -Value $nsisDir
+      - name: Configure
+        run: cmake -B build ${{ env.CMAKE_ARGS }}
+      - name: Build amalgamation
+        run: cmake --build build --target plot-amalgamate --config Release
+      - name: Package
+        run: cd build && cpack -G NSIS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packages-windows
+          path: build/*.exe
+          if-no-files-found: error
+
+  # ── Publish to the GitHub release ───────────────────────────────────────────
+  # Runs only for a tag ref (push of v* or a workflow_dispatch with the tag
+  # selected as the ref). Creates the release if absent, else uploads/replaces
+  # assets so a hand-edited release body is preserved.
+  publish:
+    name: Publish release
+    needs: [package-linux, package-macos, package-windows]
+    runs-on: ubuntu-22.04
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: packages-*
+          merge-multiple: true
+          path: dist/
+      - name: List artifacts
+        run: ls -lh dist/
+      - name: Create or update GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euxo pipefail
+          tag="${{ github.ref_name }}"
+          repo="${{ github.repository }}"
+          if gh release view "$tag" --repo "$repo" >/dev/null 2>&1; then
+            gh release upload "$tag" dist/* --clobber --repo "$repo"
+          else
+            gh release create "$tag" dist/* \
+              --title "plot $tag" \
+              --generate-notes \
+              --repo "$repo"
+          fi
