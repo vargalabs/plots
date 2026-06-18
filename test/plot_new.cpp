@@ -50,5 +50,13 @@ int main(){
 		if(out.find(">a<")   == std::string::npos) return 5;   // category tick label
 	}
 
+	// ---- density (KDE) ------------------------------------------------------
+	{
+		std::vector<double> v{1,2,2,3,3,3,4,4,5,2,3,4,1,5,3,3,2,4};
+		auto out = render_of(plot::density(v, plot::bandwidth{0.7}, plot::title("kde")));
+		if(!well_formed(out)) return 6;
+		if(out.find("<polyline") == std::string::npos) return 7;  // smooth curve
+	}
+
 	return 0;
 }
