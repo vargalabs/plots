@@ -235,6 +235,9 @@ namespace plot::impl {
 		if constexpr (title_t::present) {
 			auto title = std::get<title_t::position>( tuple );
 			if( !title.color ) title.color = plot::attribute::color_t{ th.fg };
+			// place the title sensibly when the caller didn't (e.g. plot::title("…")
+			// inside a grid) — otherwise it would render at the {0,0} fallback.
+			if( !title.position ) title.position = position{ std::size_t{4}, std::size_t{10} };
 			canvas << title;
 		}
 		if constexpr (footnote_t::present) canvas << std::get<footnote_t::position>( tuple );
