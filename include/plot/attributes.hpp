@@ -69,7 +69,11 @@ namespace plot::attribute {
 			return ptr.get()[ i % length ];
 		}
 		std::size_t length;
-		std::shared_ptr<unsigned> ptr;
+		// array shared_ptr: the ctor allocates with `new unsigned[length]`, so the
+		// deleter must be `delete[]`. A plain `shared_ptr<unsigned>` uses scalar
+		// `delete` → alloc/dealloc mismatch (UB) that crashed plot_grid on
+		// gcc-13/clang. `shared_ptr<unsigned[]>` selects the array deleter.
+		std::shared_ptr<unsigned[]> ptr;
 	};
 
 	struct font_t {
