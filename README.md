@@ -39,6 +39,10 @@ int main() {
   taking an output stream or filename plus order-independent named options
   (`title`, `xlabel`/`ylabel`, `xlog`/`ylog`, `legend`, `width`/`height`,
   `margin`).
+- **Composable `view` + `grid`** — the no-`os` form (`plot::line(x, y, …)`)
+  returns a deferred, movable `view` rendered via `plot::save("f.svg", view)` / `plot::render(os, view)`;
+  `plot::grid(file|os, plot::rows{r}, plot::cols{c}, view…)` tiles several views
+  into one figure (auto layout if `rows`/`cols` omitted).
 - **Solarized themes** — `plot::solarized_dark` / `plot::solarized_light`; set the
   global default with `plot::theme(t)` or override per call with `plot::use{t}`.
 - **Dependency-free C++23** — standard library only; no HDF5, zlib, boost, or
@@ -69,6 +73,7 @@ target_link_libraries(my_app PRIVATE plot::plot)
 - `examples/line_chart` → `line_chart.svg`
 - `examples/scatter` → `scatter.svg`
 - `examples/heatmap` → `heatmap.svg`
+- `examples/dashboard` → `dashboard.svg` (a 2×2 `view`/`grid` figure)
 
 ## Documentation
 

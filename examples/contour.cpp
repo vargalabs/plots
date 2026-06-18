@@ -16,8 +16,8 @@ int main(){
 		field[i*C+j] = std::sin(x)*std::cos(y);   // a saddle field
 	}
 	plot::mat<double> m{ field.data(), R, C };
-	plot::contour(m, plot::levels{12},
+	plot::save("contour.svg", plot::contour(m, plot::levels{12},
 		plot::title("contour"), plot::xlabel{"x"}, plot::ylabel{"y"},
-		plot::width{640}, plot::height{500}).save("contour.svg");
+		plot::width{640}, plot::height{500}));
 	return 0;
 }

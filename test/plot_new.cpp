@@ -27,7 +27,7 @@ namespace {
 		return s.rfind("<svg", 0) == 0 && s.find("</svg>") != std::string::npos;
 	}
 	std::string render_of(const auto& view){
-		std::ostringstream os; view.render(os); return os.str();
+		std::ostringstream os; plot::render(os, view); return os.str();
 	}
 }
 

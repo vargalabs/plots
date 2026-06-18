@@ -7,9 +7,9 @@
  * returns a concrete, movable *view* that captures the data and named options BY
  * VALUE. A view knows how to draw itself into a REGION of an existing canvas
  * (`draw_into(canvas, x, y, w, h)`) and reports a natural default size. A view
- * renders standalone via `.save(file)` / `.render(os)` (each opens one <svg> at
- * the natural size), so the file/ostream driver overloads are now thin sugar:
- * build the view, then save/render.
+ * renders standalone via `plot::save(file, view)` / `plot::render(os, view)`
+ * (each opens one <svg> at the natural size), so the file/ostream driver
+ * overloads are now thin sugar: build the view, then save/render.
  *
  * plot::grid(file|os, args...) is variadic and uses the SAME order-independent
  * tpos/static_for machinery as the rest of the layer: it collects every argument
@@ -115,8 +115,6 @@ namespace plot::impl {
 					});
 			}, opts);
 		}
-		void render(std::ostream& os) const { impl::render_view(os, *this); }
-		void save(const std::string& file) const { impl::save_view(file, *this); }
 	};
 
 	// ---- multi-series line view ---------------------------------------------
@@ -171,8 +169,6 @@ namespace plot::impl {
 					});
 			}, opts);
 		}
-		void render(std::ostream& os) const { impl::render_view(os, *this); }
-		void save(const std::string& file) const { impl::save_view(file, *this); }
 	};
 
 	// ---- scatter view -------------------------------------------------------
@@ -210,8 +206,6 @@ namespace plot::impl {
 					});
 			}, opts);
 		}
-		void render(std::ostream& os) const { impl::render_view(os, *this); }
-		void save(const std::string& file) const { impl::save_view(file, *this); }
 	};
 
 	// ---- heatmap view -------------------------------------------------------
@@ -244,8 +238,6 @@ namespace plot::impl {
 					(void)impl::heatmap_render(cv, data, o...); }, opts);
 			});
 		}
-		void render(std::ostream& os) const { impl::render_view(os, *this); }
-		void save(const std::string& file) const { impl::save_view(file, *this); }
 	};
 
 	// ---- standalone render/save helpers (shared by every view) --------------
@@ -264,6 +256,16 @@ namespace plot::impl {
 }
 
 namespace plot {
+	// ---- standalone rendering --------------------------------------------------
+	// Free-function form (replaces the per-view .save()/.render() members):
+	//   plot::save("chart.svg", plot::line(x, y, ...));   -> file
+	//   plot::render(std::cout,  plot::scatter(x, y));     -> stream
+	// Filename/stream first, matching plot::grid(file, ...) / plot::line(file, ...).
+	template <class V>
+	void save(const std::string& file, const V& view){ impl::save_view(file, view); }
+	template <class V>
+	void render(std::ostream& os, const V& view){ impl::render_view(os, view); }
+
 	// ---- deferred-view factories (no leading os/file argument) ---------------
 	template <class X, class Y, class... opt_t>
 	impl::line_view<opt_t...> line(const std::vector<X>& xs, const std::vector<Y>& ys, opt_t... opts){

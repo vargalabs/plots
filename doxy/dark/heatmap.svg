@@ -1,6 +1,6 @@
 <svg viewBox="0 0 88 89"  xmlns="http://www.w3.org/2000/svg">
 <rect x="0.00" y="0.00" width="88.00" height="89.00" rx="0.00" ry="0.00"  fill="#002B36"></rect>
-<g  transform="translate(19 28)" font-size="6" font-family="Ubuntu Mono" font-weight="bold">
+<g  transform="translate(19 28)" font-size="6" font-family="Ubuntu Mono" font-weight="bold" fill="#839496">
 <text x="0.00" y="0.00" transform=" rotate(-90 0 0)" text-anchor="start">1K</text>
 <text x="9.00" y="0.00" transform=" rotate(-90 9 0)" text-anchor="start">4K</text>
 <text x="19.00" y="0.00" transform=" rotate(-90 19 0)" text-anchor="start">16K</text>
@@ -8,7 +8,7 @@
 <text x="38.00" y="0.00" transform=" rotate(-90 38 0)" text-anchor="start">256K</text>
 <text x="48.00" y="0.00" transform=" rotate(-90 48 0)" text-anchor="start">1M</text>
 </g>
-<g  transform="translate(76 35)" font-size="6" font-family="Ubuntu Mono" font-weight="bold">
+<g  transform="translate(76 35)" font-size="6" font-family="Ubuntu Mono" font-weight="bold" fill="#839496">
 <text x="0.00" y="1.00" text-anchor="start">1</text>
 <text x="0.00" y="9.00" text-anchor="start">2</text>
 <text x="0.00" y="16.00" text-anchor="start">4</text>
@@ -16,7 +16,7 @@
 <text x="0.00" y="30.00" text-anchor="start">16</text>
 <text x="0.00" y="37.00" text-anchor="start">32</text>
 </g>
-<text x="4.00" y="10.00" font-size="8" font-family="Arial, Helvetica, sans-serif" font-weight="bold" text-anchor="start">throughput MB/s</text>
+<text x="4.00" y="10.00" font-size="8" font-family="Arial, Helvetica, sans-serif" font-weight="bold" fill="#839496" text-anchor="start">throughput MB/s</text>
 <g  transform="translate(14 31)">
 <rect x="0.00" y="0.00" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#268BD2"><title>93.22</title></rect>
 <rect x="9.60" y="0.00" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#2C8BCA"><title>111.9</title></rect>

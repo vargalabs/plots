@@ -115,8 +115,6 @@ namespace plot::impl {
 					});
 			}, opts);
 		}
-		void render(std::ostream& os) const { impl::render_view(os, *this); }
-		void save(const std::string& file) const { impl::save_view(file, *this); }
 	};
 }
 

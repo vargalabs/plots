@@ -1,8 +1,5 @@
-/* Copyright (c) 2026 Steven Varga, Toronto, ON, Canada
- * MIT License — see LICENSE
- *
- * Histogram example: bin a sample into counts and emit histogram.svg.
- */
+// Copyright (c) 2026 Steven Varga, Toronto, ON, Canada
+
 #include <plot/all>
 #include <vector>
 #include <cmath>
@@ -16,8 +13,8 @@ int main(){
 		double g = 0; for(int k=0;k<6;++k) g += rnd();
 		v.push_back(g);   // ~Irwin-Hall, mean 3
 	}
-	plot::histogram(v, plot::bins{24},
-		plot::title("histogram"), plot::xlabel{"value"}, plot::ylabel{"count"},
-		plot::width{640}, plot::height{400}).save("histogram.svg");
+	plot::save("histogram.svg",
+		plot::histogram(v, plot::bins{24}, plot::title("histogram"), plot::xlabel{"value"}, plot::ylabel{"count"},
+		plot::width{640}, plot::height{400}));
 	return 0;
 }

@@ -100,17 +100,17 @@ int main(){
 		if(out.find("<circle")   == std::string::npos) return 15;
 	}
 
-	// ---- standalone deferred view: plot::line(x,y).save(file) ---------------
+	// ---- standalone deferred view: plot::save(file, plot::line(x,y)) --------
 	{
 		std::ostringstream os;
-		plot::line(xs, ys, plot::title("standalone"),
-				plot::width{400}, plot::height{260}).render(os);
+		plot::render(os, plot::line(xs, ys, plot::title("standalone"),
+				plot::width{400}, plot::height{260}));
 		const std::string out = os.str();
 		if(!well_formed(out)) return 16;
 		if(out.find("<polyline") == std::string::npos) return 17;
 
 		const std::string file = "plot_grid_standalone.svg";
-		plot::scatter(xs, ys, plot::width{320}, plot::height{220}).save(file);
+		plot::save(file, plot::scatter(xs, ys, plot::width{320}, plot::height{220}));
 		std::ifstream ifs(file);
 		std::string body((std::istreambuf_iterator<char>(ifs)),
 				std::istreambuf_iterator<char>());

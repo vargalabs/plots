@@ -1,4 +1,5 @@
 <svg viewBox="0 0 720 440"  xmlns="http://www.w3.org/2000/svg">
+<g  transform="translate(0 0)">
 <rect x="0.00" y="0.00" width="720.00" height="440.00" rx="0.00" ry="0.00"  fill="#002B36"></rect>
 <rect x="56.00" y="34.00" width="618.20" height="362.00" rx="2.00" ry="2.00"  fill="#073642"></rect>
 <line x1="56.00" y1="34.00" x2="56.00" y2="396.00" stroke="#586E75" stroke-width="0.50"/>
@@ -36,4 +37,5 @@
 <text x="578.00" y="46.00" font-size="9" font-family="Arial, sans-serif" font-weight="normal" fill="#839496" text-anchor="start">scalar</text>
 <rect x="564.20" y="52.00" width="10.00" height="10.00" rx="1.00" ry="1.00"  fill="#859900"></rect>
 <text x="578.00" y="60.00" font-size="9" font-family="Arial, sans-serif" font-weight="normal" fill="#839496" text-anchor="start">simd</text>
+</g>
 </svg>
