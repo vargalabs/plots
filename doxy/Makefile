@@ -11,6 +11,10 @@ all:
 	# doxygen 1.9.1 flattens HTML_EXTRA_FILES directories, so copy the
 	# theme-aware gallery image dirs into the html output ourselves.
 	cp -r dark light $(OUT)/
+	# The gh-pages branch carries a repo .gitignore with `*.svg`; peaceiris
+	# (git add) would skip the gallery SVGs. Ship an empty .gitignore in the
+	# published dir so it overrides that rule and the SVGs get committed.
+	: > $(OUT)/.gitignore
 
 view: all
 	xdg-open $(OUT)/index.html
