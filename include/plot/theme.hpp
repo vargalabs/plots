@@ -201,7 +201,14 @@ namespace plot {
 	};
 
 	// process-global default current theme (header-only inline definition).
-	inline theme_t current_theme = solarized_dark;
+	// The default can be overridden at build time with
+	// -DPLOT_DEFAULT_THEME=<preset> (e.g. nord) — used to regenerate the
+	// theme-aware doxy gallery without editing sources. The runtime default is
+	// unchanged (solarized_dark) unless the macro is defined.
+#ifndef PLOT_DEFAULT_THEME
+#define PLOT_DEFAULT_THEME solarized_dark
+#endif
+	inline theme_t current_theme = PLOT_DEFAULT_THEME;
 
 	// setter for the global default.
 	inline void theme(const theme_t& t){ current_theme = t; }

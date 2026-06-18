@@ -8,7 +8,8 @@
 #include <cstddef>
 
 int main(){
-	plot::theme(plot::solarized_dark);   // per-call override also via plot::use{...}
+	// Renders with the global default theme; set it with plot::theme(t) or
+	// override a single render with plot::use{...}.
 
 	// axes: payload sizes (columns) and thread counts (rows).
 	std::vector<std::string> sizes  { "1K", "4K", "16K", "64K", "256K", "1M" },

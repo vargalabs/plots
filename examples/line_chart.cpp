@@ -5,7 +5,8 @@
 #include <string>
 
 int main(){
-	plot::theme(plot::solarized_dark); // (per-call override is also possible  via plot::use{ plot::solarized_light }).
+	// Renders with the global default theme; set it with plot::theme(t) or
+	// override a single render with plot::use{ plot::solarized_light }.
 
 	std::vector<double> sizes { 1'000, 4'000, 16'000, 64'000, 256'000, 1'000'000 }, // payload sizes (bytes) — spans 3 decades, so log-x reads naturally.
 		scalar { 820, 1'500, 2'600, 3'400, 3'900, 4'100 },  // two synthetic throughput curves (MB/s).	

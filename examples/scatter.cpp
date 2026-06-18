@@ -7,7 +7,8 @@
 #include <cmath>
 
 int main(){
-	plot::theme(plot::solarized_dark);
+	// Renders with the global default theme; set it with plot::theme(t) or
+	// override a single render with plot::use{t}.
 
 	std::vector<double> xs, ys;
 	// deterministic pseudo-random cloud around y = 0.8*x + noise.

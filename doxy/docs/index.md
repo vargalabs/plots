@@ -137,9 +137,11 @@ shown above.
 
 ## Gallery
 
-Every shipping driver, rendered with the Solarized theme. The image follows the
-page theme — use the moon/sun toggle (top-right) to switch between the Solarized
-**dark** and **light** renders.
+Every shipping driver. The image follows the page theme — use the moon/sun
+toggle (top-right) to switch renders. **Dark** uses the **Nord** theme (matched
+to this site's dark background); **light** uses **Solarized Light**. The bottom
+row shows the hollow (wireframe) `plot::bar` / `plot::histogram` variants beside
+the dashboard.
 
 |  |  |  |
 |:-:|:-:|:-:|
@@ -147,7 +149,7 @@ page theme — use the moon/sun toggle (top-right) to switch between the Solariz
 | <img class="only-light" src="light/histogram.svg" width="240"> <img class="only-dark" src="dark/histogram.svg" width="240"> | <img class="only-light" src="light/bar.svg" width="240"> <img class="only-dark" src="dark/bar.svg" width="240"> | <img class="only-light" src="light/density.svg" width="240"> <img class="only-dark" src="dark/density.svg" width="240"> |
 | <img class="only-light" src="light/contour.svg" width="240"> <img class="only-dark" src="dark/contour.svg" width="240"> | <img class="only-light" src="light/ohlc.svg" width="240"> <img class="only-dark" src="dark/ohlc.svg" width="240"> | <img class="only-light" src="light/graph.svg" width="240"> <img class="only-dark" src="dark/graph.svg" width="240"> |
 | <img class="only-light" src="light/pie.svg" width="240"> <img class="only-dark" src="dark/pie.svg" width="240"> | <img class="only-light" src="light/donut.svg" width="240"> <img class="only-dark" src="dark/donut.svg" width="240"> | <img class="only-light" src="light/hexbin.svg" width="240"> <img class="only-dark" src="dark/hexbin.svg" width="240"> |
-| <img class="only-light" src="light/dashboard.svg" width="240"> <img class="only-dark" src="dark/dashboard.svg" width="240"> |  |  |
+| <img class="only-light" src="light/dashboard.svg" width="240"> <img class="only-dark" src="dark/dashboard.svg" width="240"> | <img class="only-light" src="light/bar_wireframe.svg" width="240"> <img class="only-dark" src="dark/bar_wireframe.svg" width="240"> | <img class="only-light" src="light/histogram_wireframe.svg" width="240"> <img class="only-dark" src="dark/histogram_wireframe.svg" width="240"> |
 
 ## Themes
 

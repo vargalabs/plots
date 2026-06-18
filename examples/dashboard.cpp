@@ -8,7 +8,8 @@
 #include <cstddef>
 
 int main(){
-	plot::theme(plot::solarized_dark);
+	// Renders with the global default theme; set it with plot::theme(t) or
+	// override a single render with plot::use{t}.
 
 	// ---- panel 1 + 4 data: a couple of curves -------------------------------
 	std::vector<double> xs{ 1, 2, 3, 4, 5, 6, 7, 8 },
