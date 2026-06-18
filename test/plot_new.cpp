@@ -103,9 +103,13 @@ int main(){
 		if(!well_formed(pie)) return 17;
 		if(pie.find("<polygon") == std::string::npos) return 18;  // filled wedges
 		if(pie.find(">x<")       == std::string::npos) return 19;  // slice label
-		auto dn = render_of(plot::pie(labels, vals, plot::donut{0.5}, plot::title("donut")));
+		auto dn = render_of(plot::donut(labels, vals, plot::title("donut")));
 		if(!well_formed(dn)) return 20;
 		if(dn.find("<polygon") == std::string::npos) return 21;   // filled ring wedges
+		// plot::hole{} overrides the donut's default inner radius
+		auto dh = render_of(plot::donut(labels, vals, plot::hole{0.3}, plot::title("donut")));
+		if(!well_formed(dh)) return 22;
+		if(dh.find("<polygon") == std::string::npos) return 23;
 	}
 
 	// ---- hexbin (hexagonal heatmap) -----------------------------------------

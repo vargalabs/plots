@@ -132,7 +132,7 @@ shown above.
 - `plot::ohlc(t, open, high, low, close, opts...)` — open/high/low/close candles *(coming in the gallery)*.
 - `plot::graph(nodes, edges, opts...)` — node/edge network layout *(coming in the gallery)*.
 - `plot::pie(labels, values, opts...)` — proportional wedges *(coming in the gallery)*.
-- `plot::pie(labels, values, plot::donut{0.55}, opts...)` — donut (pie with an inner-radius hole).
+- `plot::donut(labels, values, opts...)` — donut (pie with a default inner-radius hole; adjust with `plot::hole{r}`).
 - `plot::hexbin(xs, ys, opts...)` — hexagonal density binning *(coming in the gallery)*.
 
 ## Gallery

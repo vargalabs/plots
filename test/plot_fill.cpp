@@ -51,7 +51,7 @@ int main(){
 	{
 		std::vector<std::string> labels{"x","y","z","w"};
 		std::vector<double> vals{30,20,40,10};
-		auto out = render_of(plot::pie(labels, vals, plot::donut{0.5}, plot::title("donut")));
+		auto out = render_of(plot::donut(labels, vals, plot::title("donut")));
 		if(!well_formed(out)) return 4;
 		if(out.find("<polygon") == std::string::npos) return 5;
 		if(!has_filled_polygon(out)) return 6;
