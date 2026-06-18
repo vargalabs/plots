@@ -333,30 +333,38 @@ $(document).ready(function(){initNavTree('heatmap_8hpp_source.html',''); initRes
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        <span class="comment">// theme background spanning the whole canvas (painted first, under all).</span></div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        { plot::attribute::element_t bg; bg.color = plot::attribute::color_t{ th.bg };</div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>          canvas.rect(0, 0, <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(width), <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(height + 10), 0, 0, bg); }</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        canvas &lt;&lt; x_axis; canvas &lt;&lt; y_axis;</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (title_t::present)    canvas &lt;&lt; std::get&lt;title_t::position&gt;( tuple );</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (footnote_t::present) canvas &lt;&lt; std::get&lt;footnote_t::position&gt;( tuple );</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        plot::attribute::color_t palette{ 0x4060FF };</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (legend_t::present) {</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>            canvas &lt;&lt; std::get&lt;legend_t::position&gt;( tuple );</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            <span class="keyword">auto</span> legend = std::get&lt;legend_t::position&gt;( tuple );</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            <span class="keywordflow">if</span>( legend.color ) palette = legend.color.value();</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        <span class="comment">// colour the axis tick labels with the theme foreground — otherwise the</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        <span class="comment">// &lt;text&gt; inherits the SVG default (black), invisible on a dark theme.</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        x_axis.color = plot::attribute::color_t{ th.fg };</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        y_axis.color = plot::attribute::color_t{ th.fg };</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        canvas &lt;&lt; x_axis; canvas &lt;&lt; y_axis;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (title_t::present) {</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>            <span class="keyword">auto</span> title = std::get&lt;title_t::position&gt;( tuple );</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            <span class="keywordflow">if</span>( !title.color ) title.color = plot::attribute::color_t{ th.fg };</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            canvas &lt;&lt; title;</div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        }</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        impl::heatmap(canvas,</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                offset_x, offset_y, x_axis.dx, y_axis.dy,</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>                .9f * x_axis.grid, .9f * y_axis.grid, data, palette, th.gradient );</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    }</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="comment">// filename convenience: opens a truncating ofstream and renders into it.</span></div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keyword">template</span> &lt;<span class="keyword">class </span>T, <span class="keyword">class</span>... arg_t&gt;</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="keywordtype">void</span> heatmap(<span class="keyword">const</span> std::string&amp; filename, <span class="keyword">const</span> T&amp; data, arg_t... args ) {</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        std::ofstream ofs(filename, std::ios::out | std::ios::trunc);</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        heatmap(ofs, data, args...);</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    }</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>}</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (footnote_t::present) canvas &lt;&lt; std::get&lt;footnote_t::position&gt;( tuple );</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>        plot::attribute::color_t palette{ 0x4060FF };</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (legend_t::present) {</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>            canvas &lt;&lt; std::get&lt;legend_t::position&gt;( tuple );</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>            <span class="keyword">auto</span> legend = std::get&lt;legend_t::position&gt;( tuple );</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>            <span class="keywordflow">if</span>( legend.color ) palette = legend.color.value();</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        }</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        impl::heatmap(canvas,</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                offset_x, offset_y, x_axis.dx, y_axis.dy,</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                .9f * x_axis.grid, .9f * y_axis.grid, data, palette, th.gradient );</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    }</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="comment">// filename convenience: opens a truncating ofstream and renders into it.</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keyword">template</span> &lt;<span class="keyword">class </span>T, <span class="keyword">class</span>... arg_t&gt;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keywordtype">void</span> heatmap(<span class="keyword">const</span> std::string&amp; filename, <span class="keyword">const</span> T&amp; data, arg_t... args ) {</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        std::ofstream ofs(filename, std::ios::out | std::ios::trunc);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        heatmap(ofs, data, args...);</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    }</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>}</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.x — H5CPP -->
