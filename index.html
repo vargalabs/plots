@@ -175,6 +175,42 @@ Scatter plot of a noisy linear relationship</div></div>
 <object type="image/svg+xml" data="heatmap.svg" style="pointer-events: none;"></object>
 <div class="caption">
 Heatmap of a throughput field with continuous gradient</div></div>
+<h2>Composing figures — <code>view</code> &amp; <code>grid</code></h2>
+<p>Each driver has a no-<code>os</code>/no-filename form that <em>defers</em> the render: it captures the data and named options by value and returns a movable, composable **<code>view</code>** instead of writing anything.</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> v = plot::line(xs, ys, plot::title(<span class="stringliteral">&quot;series A&quot;</span>));   <span class="comment">// a view, nothing written yet</span></div>
+<div class="line">v.save(<span class="stringliteral">&quot;series.svg&quot;</span>);                                   <span class="comment">// standalone &lt;svg&gt; at natural size</span></div>
+<div class="line">v.render(os);                                           <span class="comment">// … or into your own ostream</span></div>
+</div><!-- fragment --><p>So <code>plot::line(xs, ys, opts...)</code> returns a view, and the familiar <code>plot::line("series.svg", xs, ys, opts...)</code> (leading filename/<code>ostream</code>) is just sugar for <code>plot::line(xs, ys, opts...).save("series.svg")</code>.</p>
+<p><code>plot::grid(file|os, …)</code> tiles several views into a <b>single figure</b>. It is variadic and order-independent: it collects every <code>view</code> argument (in order) and resolves <code>plot::rows{r}</code> / <code>plot::cols{c}</code> / <code>plot::width{...}</code> / <code>plot::height{...}</code> / <code>plot::use{...}</code> by tag, in any order. Omit <code>rows</code>/<code>cols</code> and it lays out automatically (<code>cols = ceil(sqrt(N))</code>).</p>
+<div class="fragment"><div class="line">plot::grid(<span class="stringliteral">&quot;dashboard.svg&quot;</span>,</div>
+<div class="line">    plot::rows{2}, plot::cols{2},</div>
+<div class="line">    plot::line   (xs, ys,  plot::title(<span class="stringliteral">&quot;series A&quot;</span>), plot::xlabel{<span class="stringliteral">&quot;t&quot;</span>}, plot::ylabel{<span class="stringliteral">&quot;v&quot;</span>}),</div>
+<div class="line">    plot::scatter(sx, sy,  plot::title(<span class="stringliteral">&quot;scatter: y ~ 0.7x + noise&quot;</span>)),</div>
+<div class="line">    plot::heatmap(field,   plot::axis::x(sizes), plot::axis::y(threads),</div>
+<div class="line">                           plot::title(<span class="stringliteral">&quot;throughput MB/s&quot;</span>)),</div>
+<div class="line">    plot::line   (xs, {{ <span class="stringliteral">&quot;rising&quot;</span>, ys }, { <span class="stringliteral">&quot;falling&quot;</span>, ys2 }}, plot::title(<span class="stringliteral">&quot;two series&quot;</span>)),</div>
+<div class="line">    plot::width{1200}, plot::height{800});</div>
+</div><!-- fragment --><div class="image">
+<object type="image/svg+xml" data="dashboard.svg" style="pointer-events: none;"></object>
+<div class="caption">
+A 2×2 figure: line, scatter, heatmap and multi-series line tiled by plot::grid</div></div>
+<p><b>Themes.</b> A <code>view</code> carries no theme of its own: at render time each view resolves the process-global <code>plot::theme(...)</code> default — unless it was built with a per-view <code>plot::use{ ... }</code> override. <code>plot::grid</code> likewise paints the figure background from the resolved theme (its own <code>plot::use{...}</code>, else the global default), so one <code>plot::theme(...)</code> call styles the whole dashboard.</p>
+<p>See <code>examples/dashboard.cpp</code> for the program that emits the figure above.</p>
+<h2>Plot types</h2>
+<p>The shipping drivers, plus the gallery still being filled out. Every one has a deferred <code>view</code> form (no leading <code>os</code>/filename) and the filename/<code>ostream</code> sugar shown above.</p>
+<ul>
+<li><code>plot::line(xs, ys, opts...)</code> — line series (multi-series: <code>plot::line(xs, {{"label", data}, …}, opts...)</code>).</li>
+<li><code>plot::scatter(xs, ys, opts...)</code> — scatter of points.</li>
+<li><code>plot::heatmap(mat, plot::axis::x(xs), plot::axis::y(ys), opts...)</code> — 2-D grid colored by cell value.</li>
+<li><code>plot::histogram(values, opts...)</code> — binned frequency *(coming in the gallery)*.</li>
+<li><code>plot::bar(labels, values, opts...)</code> — categorical bars *(coming in the gallery)*.</li>
+<li><code>plot::density(values, opts...)</code> — smoothed (KDE) distribution *(coming in the gallery)*.</li>
+<li><code>plot::contour(mat, opts...)</code> — iso-level contours of a scalar field *(coming in the gallery)*.</li>
+<li><code>plot::ohlc(t, open, high, low, close, opts...)</code> — open/high/low/close candles *(coming in the gallery)*.</li>
+<li><code>plot::graph(nodes, edges, opts...)</code> — node/edge network layout *(coming in the gallery)*.</li>
+<li><code>plot::pie(labels, values, opts...)</code> — proportional wedges *(coming in the gallery)*.</li>
+<li><code>plot::hexbin(xs, ys, opts...)</code> — hexagonal density binning *(coming in the gallery)*.</li>
+</ul>
 <h2>Building &amp; integrating</h2>
 <div class="fragment"><div class="line">cmake -S . -B build -DPLOTS_BUILD_EXAMPLES=ON</div>
 <div class="line">cmake --build build -j</div>
