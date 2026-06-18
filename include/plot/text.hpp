@@ -53,7 +53,10 @@ namespace plot {
 		}
 
 		void ostream( impl::canvas_t& os ) const {
-			os.text(txt, position->x, position->y, *this );
+			// `position` is optional; a title created without an explicit position
+			// must NOT dereference it (that reads an uninitialized variant — UB).
+			const auto pos = position.value_or(attribute::position_t{});
+			os.text(txt, pos.x, pos.y, *this );
 		}
 		const std::string txt;
 	};
