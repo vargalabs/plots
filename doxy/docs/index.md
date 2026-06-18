@@ -162,21 +162,13 @@ Every shipping driver, rendered with the Solarized theme. The image follows the
 page theme — use the moon/sun toggle (top-right) to switch between the Solarized
 **dark** and **light** renders.
 
-| Code | Plot |
-|------|------|
-| `plot::line(file, xs, {{"scalar", a}, {"simd", b}}, plot::title(…), plot::xlog{10.0})` | <img class="only-light" src="light/line_chart.svg" width="320"> <img class="only-dark" src="dark/line_chart.svg" width="320"> |
-| `plot::scatter(file, xs, ys, plot::title(…), plot::xlabel{"x"}, plot::ylabel{"y"})` | <img class="only-light" src="light/scatter.svg" width="320"> <img class="only-dark" src="dark/scatter.svg" width="320"> |
-| `plot::heatmap(file, mat, plot::axis::x(cols), plot::axis::y(rows), plot::title(…))` | <img class="only-light" src="light/heatmap.svg" width="320"> <img class="only-dark" src="dark/heatmap.svg" width="320"> |
-| `plot::histogram(values, plot::bins{24}, plot::title(…))` | <img class="only-light" src="light/histogram.svg" width="320"> <img class="only-dark" src="dark/histogram.svg" width="320"> |
-| `plot::bar(labels, values, plot::title(…), plot::xlabel{"day"}, plot::ylabel{"units"})` | <img class="only-light" src="light/bar.svg" width="320"> <img class="only-dark" src="dark/bar.svg" width="320"> |
-| `plot::density(values, plot::title(…), plot::xlabel{"value"}, plot::ylabel{"density"})` | <img class="only-light" src="light/density.svg" width="320"> <img class="only-dark" src="dark/density.svg" width="320"> |
-| `plot::contour(mat, plot::levels{12}, plot::title(…), plot::xlabel{"x"}, plot::ylabel{"y"})` | <img class="only-light" src="light/contour.svg" width="320"> <img class="only-dark" src="dark/contour.svg" width="320"> |
-| `plot::ohlc(t, open, high, low, close, plot::title(…), plot::ylabel{"price"})` | <img class="only-light" src="light/ohlc.svg" width="320"> <img class="only-dark" src="dark/ohlc.svg" width="320"> |
-| `plot::graph(nodes, edges, plot::title(…))` | <img class="only-light" src="light/graph.svg" width="320"> <img class="only-dark" src="dark/graph.svg" width="320"> |
-| `plot::pie(labels, values, plot::title(…))` | <img class="only-light" src="light/pie.svg" width="320"> <img class="only-dark" src="dark/pie.svg" width="320"> |
-| `plot::pie(labels, values, plot::donut{0.55}, plot::title(…))` | <img class="only-light" src="light/donut.svg" width="320"> <img class="only-dark" src="dark/donut.svg" width="320"> |
-| `plot::hexbin(mat, plot::title(…), plot::width{680}, plot::height{520})` | <img class="only-light" src="light/hexbin.svg" width="320"> <img class="only-dark" src="dark/hexbin.svg" width="320"> |
-| `plot::grid(file, plot::rows{2}, plot::cols{2}, view…, plot::width{1200}, plot::height{800})` | <img class="only-light" src="light/dashboard.svg" width="320"> <img class="only-dark" src="dark/dashboard.svg" width="320"> |
+|  |  |  |
+|:-:|:-:|:-:|
+| <img class="only-light" src="light/line_chart.svg" width="240"> <img class="only-dark" src="dark/line_chart.svg" width="240"> | <img class="only-light" src="light/scatter.svg" width="240"> <img class="only-dark" src="dark/scatter.svg" width="240"> | <img class="only-light" src="light/heatmap.svg" width="240"> <img class="only-dark" src="dark/heatmap.svg" width="240"> |
+| <img class="only-light" src="light/histogram.svg" width="240"> <img class="only-dark" src="dark/histogram.svg" width="240"> | <img class="only-light" src="light/bar.svg" width="240"> <img class="only-dark" src="dark/bar.svg" width="240"> | <img class="only-light" src="light/density.svg" width="240"> <img class="only-dark" src="dark/density.svg" width="240"> |
+| <img class="only-light" src="light/contour.svg" width="240"> <img class="only-dark" src="dark/contour.svg" width="240"> | <img class="only-light" src="light/ohlc.svg" width="240"> <img class="only-dark" src="dark/ohlc.svg" width="240"> | <img class="only-light" src="light/graph.svg" width="240"> <img class="only-dark" src="dark/graph.svg" width="240"> |
+| <img class="only-light" src="light/pie.svg" width="240"> <img class="only-dark" src="dark/pie.svg" width="240"> | <img class="only-light" src="light/donut.svg" width="240"> <img class="only-dark" src="dark/donut.svg" width="240"> | <img class="only-light" src="light/hexbin.svg" width="240"> <img class="only-dark" src="dark/hexbin.svg" width="240"> |
+| <img class="only-light" src="light/dashboard.svg" width="240"> <img class="only-dark" src="dark/dashboard.svg" width="240"> |  |  |
 
 ## Building & integrating
 
