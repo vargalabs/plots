@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 #include <cstddef>
+#include <cmath>
 
 namespace {
 	std::size_t count(const std::string& hay, const std::string& needle){
@@ -56,6 +57,20 @@ int main(){
 		auto out = render_of(plot::density(v, plot::bandwidth{0.7}, plot::title("kde")));
 		if(!well_formed(out)) return 6;
 		if(out.find("<polyline") == std::string::npos) return 7;  // smooth curve
+	}
+
+	// ---- contour (marching squares) -----------------------------------------
+	{
+		const std::size_t R=12, C=12;
+		std::vector<double> field(R*C);
+		for(std::size_t i=0;i<R;++i) for(std::size_t j=0;j<C;++j){
+			double dx=double(j)-5.5, dy=double(i)-5.5;
+			field[i*C+j] = std::exp(-(dx*dx+dy*dy)/12.0);   // a bump
+		}
+		plot::mat<double> m{ field.data(), R, C };
+		auto out = render_of(plot::contour(m, plot::levels{6}, plot::title("contour")));
+		if(!well_formed(out)) return 8;
+		if(out.find("<polyline") == std::string::npos) return 9;  // iso segments
 	}
 
 	return 0;

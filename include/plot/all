@@ -22,4 +22,5 @@
 	#include "histogram.hpp"
 	#include "bar.hpp"
 	#include "density.hpp"
+	#include "contour.hpp"
 #endif
