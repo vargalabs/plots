@@ -30,6 +30,15 @@
 #include "gr.hpp"
 #include "view.hpp"
 
+#ifndef PLOT_WIREFRAME_DEFINED
+#define PLOT_WIREFRAME_DEFINED
+namespace plot {
+	// outline-only style marker for bar/histogram: stroke in the series colour,
+	// fill="none" — the wire frame of the columns (issue #13).
+	struct wireframe { using value_type = tag::wireframe_t; };
+}
+#endif
+
 namespace plot {
 	// histogram bin count (order-independent named argument).
 	struct bins { using value_type = tag::bins_t; std::size_t value; };
@@ -64,6 +73,7 @@ namespace plot::impl {
 				const theme_t& th = impl::resolve_theme(o...);
 				auto [title, xl, yl] = impl::texts(o...);
 				const std::size_t nb = impl::bins_of(values.size(), o...);
+				constexpr bool wire = arg::tpos<tag::wireframe_t, opt_t...>::present;
 
 				auto [vmn, vmx] = impl::minmax_of(values);
 				if( vmx <= vmn ) vmx = vmn + 1.0;
@@ -95,9 +105,19 @@ namespace plot::impl {
 							float yt = py(counts[b]);
 							float bw = xr0 - xl0;
 							if( bw < 1.0f ) bw = 1.0f;
-							attribute_t a; a.color = plot::attribute::color_t{ col };
-							// inset by 1px so adjacent bars read as separate columns.
-							c.rect(xl0 + 0.5f, yt, bw - 1.0f, y0 - yt, 0, 0, a);
+							if constexpr( wire ){
+								// outline-only bin: fill="none", stroke in series colour.
+								attribute_t a; a.color = plot::attribute::color_t{ col };
+								a.stroke = plot::attribute::stroke_t{1.0f, 1.5f, {}, {}, {}};
+								float lx = xl0 + 0.5f, rx = lx + (bw - 1.0f);
+								std::vector<float> X{lx, rx, rx, lx, lx};
+								std::vector<float> Y{yt, yt, y0, y0, yt};
+								c.poly_line(X, Y, a);
+							} else {
+								attribute_t a; a.color = plot::attribute::color_t{ col };
+								// inset by 1px so adjacent bars read as separate columns.
+								c.rect(xl0 + 0.5f, yt, bw - 1.0f, y0 - yt, 0, 0, a);
+							}
 						}
 					});
 			}, opts);

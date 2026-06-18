@@ -16,5 +16,9 @@ int main(){
 	plot::save("histogram.svg",
 		plot::histogram(v, plot::bins{24}, plot::title("histogram"), plot::xlabel{"value"}, plot::ylabel{"count"},
 		plot::width{640}, plot::height{400}));
+	// outline-only (wireframe) variant.
+	plot::save("histogram_wireframe.svg",
+		plot::histogram(v, plot::bins{24}, plot::wireframe{}, plot::title("histogram (wireframe)"),
+		plot::xlabel{"value"}, plot::ylabel{"count"}, plot::width{640}, plot::height{400}));
 	return 0;
 }
