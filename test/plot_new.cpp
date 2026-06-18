@@ -101,11 +101,11 @@ int main(){
 		std::vector<double> vals{30,20,40,10};
 		auto pie = render_of(plot::pie(labels, vals, plot::title("pie")));
 		if(!well_formed(pie)) return 17;
-		if(pie.find("<polyline") == std::string::npos) return 18;  // wedges
+		if(pie.find("<polygon") == std::string::npos) return 18;  // filled wedges
 		if(pie.find(">x<")       == std::string::npos) return 19;  // slice label
 		auto dn = render_of(plot::pie(labels, vals, plot::donut{0.5}, plot::title("donut")));
 		if(!well_formed(dn)) return 20;
-		if(dn.find("<polyline") == std::string::npos) return 21;   // ring wedges
+		if(dn.find("<polygon") == std::string::npos) return 21;   // filled ring wedges
 	}
 
 	// ---- hexbin (hexagonal heatmap) -----------------------------------------
@@ -117,9 +117,9 @@ int main(){
 		plot::mat<double> m{ field.data(), R, C };
 		auto out = render_of(plot::hexbin(m, plot::title("hex")));
 		if(!well_formed(out)) return 22;
-		if(out.find("<polyline") == std::string::npos) return 23;  // hexagons
+		if(out.find("<polygon") == std::string::npos) return 23;  // filled hexagons
 		// honeycomb -> R*C hex cells.
-		if(count(out, "<polyline") < R*C) return 24;
+		if(count(out, "<polygon") < R*C) return 24;
 	}
 
 	// ---- all eight new types compose into a single plot::grid figure --------
