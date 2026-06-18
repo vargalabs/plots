@@ -24,7 +24,10 @@ jobs:
           sudo apt-get install -y doxygen graphviz
 
       - name: Build Doxygen documentation
-        run: doxygen Doxyfile
+        # `make all` runs doxygen AND copies doxy/dark + doxy/light into the html
+        # output (doxygen 1.9.x flattens HTML_EXTRA_FILES dirs, so the gallery
+        # images are copied by the Makefile instead).
+        run: make all
         working-directory: doxy
 
       - name: Deploy Doxygen to gh-pages root
