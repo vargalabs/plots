@@ -132,6 +132,7 @@ shown above.
 - `plot::ohlc(t, open, high, low, close, opts...)` — open/high/low/close candles *(coming in the gallery)*.
 - `plot::graph(nodes, edges, opts...)` — node/edge network layout *(coming in the gallery)*.
 - `plot::pie(labels, values, opts...)` — proportional wedges *(coming in the gallery)*.
+- `plot::pie(labels, values, plot::donut{0.55}, opts...)` — donut (pie with an inner-radius hole).
 - `plot::hexbin(xs, ys, opts...)` — hexagonal density binning *(coming in the gallery)*.
 
 ## Gallery
@@ -147,6 +148,37 @@ page theme — use the moon/sun toggle (top-right) to switch between the Solariz
 | <img class="only-light" src="light/contour.svg" width="240"> <img class="only-dark" src="dark/contour.svg" width="240"> | <img class="only-light" src="light/ohlc.svg" width="240"> <img class="only-dark" src="dark/ohlc.svg" width="240"> | <img class="only-light" src="light/graph.svg" width="240"> <img class="only-dark" src="dark/graph.svg" width="240"> |
 | <img class="only-light" src="light/pie.svg" width="240"> <img class="only-dark" src="dark/pie.svg" width="240"> | <img class="only-light" src="light/donut.svg" width="240"> <img class="only-dark" src="dark/donut.svg" width="240"> | <img class="only-light" src="light/hexbin.svg" width="240"> <img class="only-dark" src="dark/hexbin.svg" width="240"> |
 | <img class="only-light" src="light/dashboard.svg" width="240"> <img class="only-dark" src="dark/dashboard.svg" width="240"> |  |  |
+
+## Themes
+
+Every render resolves a `plot::theme_t` — structural colours, a cycled categorical
+series palette and a 3-stop continuous gradient for the heatmap. Set the
+process-global default with `plot::theme(t)`, or override a single render with a
+per-call `plot::use{t}`.
+
+```cpp
+plot::theme(plot::tokyo_night);                 // process-global
+plot::line("bw.svg", x, y, plot::use{plot::dracula});   // per-call override
+```
+
+The presets below ship in `theme.hpp` (added in a parallel lane):
+
+| Theme | Description |
+|-------|-------------|
+| `solarized_dark`  | Solarized — dark, low-contrast teal/amber base. |
+| `solarized_light` | Solarized — light, warm paper background. |
+| `dark_plus`       | VS Code Dark+ — neutral dark editor palette. |
+| `light_plus`      | VS Code Light+ — neutral light editor palette. |
+| `monokai`         | Monokai — dark with vivid green/orange/pink accents. |
+| `dracula`         | Dracula — dark, vivid pink/purple accents. |
+| `nord`            | Nord — cool, muted arctic blue-grey. |
+| `one_dark`        | One Dark — Atom-style balanced dark. |
+| `gruvbox_dark`    | Gruvbox — dark, retro warm earth tones. |
+| `gruvbox_light`   | Gruvbox — light, retro warm earth tones. |
+| `tomorrow_night`  | Tomorrow Night — soft, even-contrast dark. |
+| `night_owl`       | Night Owl — deep blue dark, high legibility. |
+| `material`        | Material — Material Design dark teal/blue. |
+| `tokyo_night`     | Tokyo Night — deep indigo dark, neon accents. |
 
 ## Building & integrating
 
