@@ -13,3 +13,7 @@ add_test(NAME plot_new COMMAND plot_new)
 add_executable(plot_fill plot_fill.cpp)
 target_link_libraries(plot_fill PRIVATE plot::plot)
 add_test(NAME plot_fill COMMAND plot_fill)
+
+add_executable(plot_themes plot_themes.cpp)
+target_link_libraries(plot_themes PRIVATE plot::plot)
+add_test(NAME plot_themes COMMAND plot_themes)
