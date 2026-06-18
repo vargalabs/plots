@@ -178,9 +178,9 @@ Heatmap of a throughput field with continuous gradient</div></div>
 <h2>Composing figures — <code>view</code> &amp; <code>grid</code></h2>
 <p>Each driver has a no-<code>os</code>/no-filename form that <em>defers</em> the render: it captures the data and named options by value and returns a movable, composable **<code>view</code>** instead of writing anything.</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> v = plot::line(xs, ys, plot::title(<span class="stringliteral">&quot;series A&quot;</span>));   <span class="comment">// a view, nothing written yet</span></div>
-<div class="line">v.save(<span class="stringliteral">&quot;series.svg&quot;</span>);                                   <span class="comment">// standalone &lt;svg&gt; at natural size</span></div>
-<div class="line">v.render(os);                                           <span class="comment">// … or into your own ostream</span></div>
-</div><!-- fragment --><p>So <code>plot::line(xs, ys, opts...)</code> returns a view, and the familiar <code>plot::line("series.svg", xs, ys, opts...)</code> (leading filename/<code>ostream</code>) is just sugar for <code>plot::line(xs, ys, opts...).save("series.svg")</code>.</p>
+<div class="line">plot::save(<span class="stringliteral">&quot;series.svg&quot;</span>, v);                            <span class="comment">// standalone &lt;svg&gt; at natural size</span></div>
+<div class="line">plot::render(os, v);                                    <span class="comment">// … or into your own ostream</span></div>
+</div><!-- fragment --><p>So <code>plot::line(xs, ys, opts...)</code> returns a view, and the familiar <code>plot::line("series.svg", xs, ys, opts...)</code> (leading filename/<code>ostream</code>) is just sugar for <code>plot::save("series.svg", plot::line(xs, ys, opts...))</code>.</p>
 <p><code>plot::grid(file|os, …)</code> tiles several views into a <b>single figure</b>. It is variadic and order-independent: it collects every <code>view</code> argument (in order) and resolves <code>plot::rows{r}</code> / <code>plot::cols{c}</code> / <code>plot::width{...}</code> / <code>plot::height{...}</code> / <code>plot::use{...}</code> by tag, in any order. Omit <code>rows</code>/<code>cols</code> and it lays out automatically (<code>cols = ceil(sqrt(N))</code>).</p>
 <div class="fragment"><div class="line">plot::grid(<span class="stringliteral">&quot;dashboard.svg&quot;</span>,</div>
 <div class="line">    plot::rows{2}, plot::cols{2},</div>

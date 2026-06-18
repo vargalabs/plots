@@ -211,20 +211,18 @@ $(document).ready(function(){initNavTree('graph_8hpp_source.html',''); initResiz
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                    });</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>            }, opts);</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        }</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordtype">void</span> render(std::ostream&amp; os)<span class="keyword"> const </span>{ impl::render_view(os, *<span class="keyword">this</span>); }</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keywordtype">void</span> save(<span class="keyword">const</span> std::string&amp; file)<span class="keyword"> const </span>{ impl::save_view(file, *<span class="keyword">this</span>); }</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    };</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>}</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="keyword">namespace </span>plot {</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span>... opt_t&gt;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    impl::graph_view&lt;opt_t...&gt; graph(std::vector&lt;std::string&gt; nodes,</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            std::vector&lt;std::pair&lt;std::size_t,std::size_t&gt;&gt; edges, opt_t... opts){</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordflow">return</span> impl::graph_view&lt;opt_t...&gt;{ std::move(nodes), std::move(edges),</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                std::make_tuple(opts...) };</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    }</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>}</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    };</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>}</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="keyword">namespace </span>plot {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span>... opt_t&gt;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    impl::graph_view&lt;opt_t...&gt; graph(std::vector&lt;std::string&gt; nodes,</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            std::vector&lt;std::pair&lt;std::size_t,std::size_t&gt;&gt; edges, opt_t... opts){</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordflow">return</span> impl::graph_view&lt;opt_t...&gt;{ std::move(nodes), std::move(edges),</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                std::make_tuple(opts...) };</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    }</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>}</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.x — H5CPP -->

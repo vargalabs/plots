@@ -191,20 +191,18 @@ $(document).ready(function(){initNavTree('bar_8hpp_source.html',''); initResizab
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                    });</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            }, opts);</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        }</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordtype">void</span> render(std::ostream&amp; os)<span class="keyword"> const </span>{ impl::render_view(os, *<span class="keyword">this</span>); }</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordtype">void</span> save(<span class="keyword">const</span> std::string&amp; file)<span class="keyword"> const </span>{ impl::save_view(file, *<span class="keyword">this</span>); }</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    };</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>}</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keyword">namespace </span>plot {</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span>... opt_t&gt;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    impl::bar_view&lt;opt_t...&gt; bar(std::vector&lt;std::string&gt; labels,</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            std::vector&lt;double&gt; values, opt_t... opts){</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordflow">return</span> impl::bar_view&lt;opt_t...&gt;{ std::move(labels), std::move(values),</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                std::make_tuple(opts...) };</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>}</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    };</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">namespace </span>plot {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span>... opt_t&gt;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    impl::bar_view&lt;opt_t...&gt; bar(std::vector&lt;std::string&gt; labels,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            std::vector&lt;double&gt; values, opt_t... opts){</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">return</span> impl::bar_view&lt;opt_t...&gt;{ std::move(labels), std::move(values),</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                std::make_tuple(opts...) };</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>}</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.x — H5CPP -->
