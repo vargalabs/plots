@@ -94,5 +94,18 @@ int main(){
 		if(out.find(">A<")     == std::string::npos) return 16;   // node label
 	}
 
+	// ---- pie + donut --------------------------------------------------------
+	{
+		std::vector<std::string> labels{"x","y","z","w"};
+		std::vector<double> vals{30,20,40,10};
+		auto pie = render_of(plot::pie(labels, vals, plot::title("pie")));
+		if(!well_formed(pie)) return 17;
+		if(pie.find("<polyline") == std::string::npos) return 18;  // wedges
+		if(pie.find(">x<")       == std::string::npos) return 19;  // slice label
+		auto dn = render_of(plot::pie(labels, vals, plot::donut{0.5}, plot::title("donut")));
+		if(!well_formed(dn)) return 20;
+		if(dn.find("<polyline") == std::string::npos) return 21;   // ring wedges
+	}
+
 	return 0;
 }

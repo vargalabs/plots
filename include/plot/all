@@ -25,4 +25,5 @@
 	#include "contour.hpp"
 	#include "ohlc.hpp"
 	#include "graph.hpp"
+	#include "pie.hpp"
 #endif
