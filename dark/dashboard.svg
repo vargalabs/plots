@@ -1,0 +1,242 @@
+<svg viewBox="0 0 1200 800"  xmlns="http://www.w3.org/2000/svg">
+<rect x="0.00" y="0.00" width="1200.00" height="800.00" rx="0.00" ry="0.00"  fill="#002B36"></rect>
+<g  transform="translate(0 0)">
+<rect x="0.00" y="0.00" width="600.00" height="400.00" rx="0.00" ry="0.00"  fill="#002B36"></rect>
+<rect x="56.00" y="34.00" width="530.00" height="322.00" rx="2.00" ry="2.00"  fill="#073642"></rect>
+<line x1="56.00" y1="34.00" x2="56.00" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="56.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">1</text>
+<line x1="131.71" y1="34.00" x2="131.71" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="131.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">2</text>
+<line x1="207.43" y1="34.00" x2="207.43" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="207.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">3</text>
+<line x1="283.14" y1="34.00" x2="283.14" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="283.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">4</text>
+<line x1="358.86" y1="34.00" x2="358.86" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="358.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">5</text>
+<line x1="434.57" y1="34.00" x2="434.57" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="434.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">6</text>
+<line x1="510.29" y1="34.00" x2="510.29" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="510.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">7</text>
+<line x1="586.00" y1="34.00" x2="586.00" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="586.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">8</text>
+<line x1="56.00" y1="356.00" x2="586.00" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="36.00" y="359.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">2</text>
+<line x1="56.00" y1="302.33" x2="586.00" y2="302.33" stroke="#586E75" stroke-width="0.50"/>
+<text x="36.00" y="305.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">4</text>
+<line x1="56.00" y1="248.67" x2="586.00" y2="248.67" stroke="#586E75" stroke-width="0.50"/>
+<text x="36.00" y="251.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">6</text>
+<line x1="56.00" y1="195.00" x2="586.00" y2="195.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="36.00" y="198.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">8</text>
+<line x1="56.00" y1="141.33" x2="586.00" y2="141.33" stroke="#586E75" stroke-width="0.50"/>
+<text x="31.00" y="144.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">10</text>
+<line x1="56.00" y1="87.67" x2="586.00" y2="87.67" stroke="#586E75" stroke-width="0.50"/>
+<text x="31.00" y="90.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">12</text>
+<line x1="56.00" y1="34.00" x2="586.00" y2="34.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="31.00" y="37.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">14</text>
+<line x1="56.00" y1="34.00" x2="56.00" y2="356.00" stroke="#586E75" stroke-width="1.20"/>
+<line x1="56.00" y1="356.00" x2="586.00" y2="356.00" stroke="#586E75" stroke-width="1.20"/>
+<text x="321.00" y="18.00" font-size="13" font-family="Arial, sans-serif" font-weight="bold" fill="#839496" text-anchor="start">series A</text>
+<text x="321.00" y="392.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#839496" text-anchor="start">t</text>
+<text x="14.00" y="195.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#839496" transform=" rotate(270 14 195)" text-anchor="start">v</text>
+<polyline points="56.00,356.00 131.71,275.50 207.43,302.33 283.14,195.00 358.86,221.83 434.57,114.50 510.29,168.17 586.00,60.83" fill="none" stroke="#268BD2" stroke-width="1.80"/>
+</g>
+<g  transform="translate(600 0)">
+<rect x="0.00" y="0.00" width="600.00" height="400.00" rx="0.00" ry="0.00"  fill="#002B36"></rect>
+<rect x="56.00" y="34.00" width="525.20" height="322.00" rx="2.00" ry="2.00"  fill="#073642"></rect>
+<line x1="56.00" y1="34.00" x2="56.00" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="56.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">0</text>
+<line x1="187.30" y1="34.00" x2="187.30" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="187.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">5</text>
+<line x1="318.60" y1="34.00" x2="318.60" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="318.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">10</text>
+<line x1="449.90" y1="34.00" x2="449.90" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="449.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">15</text>
+<line x1="581.20" y1="34.00" x2="581.20" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="581.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">20</text>
+<line x1="56.00" y1="356.00" x2="581.20" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="31.00" y="359.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">-5</text>
+<line x1="56.00" y1="291.60" x2="581.20" y2="291.60" stroke="#586E75" stroke-width="0.50"/>
+<text x="36.00" y="294.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">0</text>
+<line x1="56.00" y1="227.20" x2="581.20" y2="227.20" stroke="#586E75" stroke-width="0.50"/>
+<text x="36.00" y="230.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">5</text>
+<line x1="56.00" y1="162.80" x2="581.20" y2="162.80" stroke="#586E75" stroke-width="0.50"/>
+<text x="31.00" y="165.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">10</text>
+<line x1="56.00" y1="98.40" x2="581.20" y2="98.40" stroke="#586E75" stroke-width="0.50"/>
+<text x="31.00" y="101.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">15</text>
+<line x1="56.00" y1="34.00" x2="581.20" y2="34.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="31.00" y="37.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">20</text>
+<line x1="56.00" y1="34.00" x2="56.00" y2="356.00" stroke="#586E75" stroke-width="1.20"/>
+<line x1="56.00" y1="356.00" x2="581.20" y2="356.00" stroke="#586E75" stroke-width="1.20"/>
+<text x="318.00" y="18.00" font-size="13" font-family="Arial, sans-serif" font-weight="bold" fill="#839496" text-anchor="start">scatter: y ~ 0.7x + noise</text>
+<text x="318.00" y="392.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#839496" text-anchor="start">x</text>
+<text x="14.00" y="195.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#839496" transform=" rotate(270 14 195)" text-anchor="start">y</text>
+<circle cx="56.00" cy="322.01" r="3.00"  fill="#268BD2"></circle>
+<circle cx="62.56" cy="250.77" r="3.00"  fill="#268BD2"></circle>
+<circle cx="69.13" cy="273.62" r="3.00"  fill="#268BD2"></circle>
+<circle cx="75.69" cy="261.14" r="3.00"  fill="#268BD2"></circle>
+<circle cx="82.26" cy="300.57" r="3.00"  fill="#268BD2"></circle>
+<circle cx="88.82" cy="243.20" r="3.00"  fill="#268BD2"></circle>
+<circle cx="95.39" cy="281.72" r="3.00"  fill="#268BD2"></circle>
+<circle cx="101.96" cy="289.76" r="3.00"  fill="#268BD2"></circle>
+<circle cx="108.52" cy="305.87" r="3.00"  fill="#268BD2"></circle>
+<circle cx="115.08" cy="262.73" r="3.00"  fill="#268BD2"></circle>
+<circle cx="121.65" cy="240.89" r="3.00"  fill="#268BD2"></circle>
+<circle cx="128.21" cy="241.64" r="3.00"  fill="#268BD2"></circle>
+<circle cx="134.78" cy="253.41" r="3.00"  fill="#268BD2"></circle>
+<circle cx="141.35" cy="249.35" r="3.00"  fill="#268BD2"></circle>
+<circle cx="147.91" cy="234.66" r="3.00"  fill="#268BD2"></circle>
+<circle cx="154.48" cy="268.25" r="3.00"  fill="#268BD2"></circle>
+<circle cx="161.04" cy="240.69" r="3.00"  fill="#268BD2"></circle>
+<circle cx="167.61" cy="257.02" r="3.00"  fill="#268BD2"></circle>
+<circle cx="174.17" cy="289.35" r="3.00"  fill="#268BD2"></circle>
+<circle cx="180.74" cy="260.04" r="3.00"  fill="#268BD2"></circle>
+<circle cx="187.30" cy="230.58" r="3.00"  fill="#268BD2"></circle>
+<circle cx="193.86" cy="232.27" r="3.00"  fill="#268BD2"></circle>
+<circle cx="200.43" cy="223.24" r="3.00"  fill="#268BD2"></circle>
+<circle cx="206.99" cy="254.71" r="3.00"  fill="#268BD2"></circle>
+<circle cx="213.56" cy="223.00" r="3.00"  fill="#268BD2"></circle>
+<circle cx="220.12" cy="229.60" r="3.00"  fill="#268BD2"></circle>
+<circle cx="226.69" cy="266.07" r="3.00"  fill="#268BD2"></circle>
+<circle cx="233.26" cy="233.59" r="3.00"  fill="#268BD2"></circle>
+<circle cx="239.82" cy="237.53" r="3.00"  fill="#268BD2"></circle>
+<circle cx="246.39" cy="217.21" r="3.00"  fill="#268BD2"></circle>
+<circle cx="252.95" cy="254.80" r="3.00"  fill="#268BD2"></circle>
+<circle cx="259.52" cy="227.38" r="3.00"  fill="#268BD2"></circle>
+<circle cx="266.08" cy="183.11" r="3.00"  fill="#268BD2"></circle>
+<circle cx="272.65" cy="230.02" r="3.00"  fill="#268BD2"></circle>
+<circle cx="279.21" cy="215.49" r="3.00"  fill="#268BD2"></circle>
+<circle cx="285.78" cy="242.10" r="3.00"  fill="#268BD2"></circle>
+<circle cx="292.34" cy="212.41" r="3.00"  fill="#268BD2"></circle>
+<circle cx="298.91" cy="216.90" r="3.00"  fill="#268BD2"></circle>
+<circle cx="305.47" cy="175.96" r="3.00"  fill="#268BD2"></circle>
+<circle cx="312.04" cy="192.66" r="3.00"  fill="#268BD2"></circle>
+<circle cx="318.60" cy="207.36" r="3.00"  fill="#268BD2"></circle>
+<circle cx="325.17" cy="223.10" r="3.00"  fill="#268BD2"></circle>
+<circle cx="331.73" cy="202.93" r="3.00"  fill="#268BD2"></circle>
+<circle cx="338.30" cy="166.15" r="3.00"  fill="#268BD2"></circle>
+<circle cx="344.86" cy="191.37" r="3.00"  fill="#268BD2"></circle>
+<circle cx="351.43" cy="216.25" r="3.00"  fill="#268BD2"></circle>
+<circle cx="357.99" cy="169.88" r="3.00"  fill="#268BD2"></circle>
+<circle cx="364.55" cy="159.01" r="3.00"  fill="#268BD2"></circle>
+<circle cx="371.12" cy="198.67" r="3.00"  fill="#268BD2"></circle>
+<circle cx="377.69" cy="158.14" r="3.00"  fill="#268BD2"></circle>
+<circle cx="384.25" cy="210.62" r="3.00"  fill="#268BD2"></circle>
+<circle cx="390.82" cy="189.88" r="3.00"  fill="#268BD2"></circle>
+<circle cx="397.38" cy="198.53" r="3.00"  fill="#268BD2"></circle>
+<circle cx="403.95" cy="210.27" r="3.00"  fill="#268BD2"></circle>
+<circle cx="410.51" cy="166.94" r="3.00"  fill="#268BD2"></circle>
+<circle cx="417.08" cy="202.60" r="3.00"  fill="#268BD2"></circle>
+<circle cx="423.64" cy="189.09" r="3.00"  fill="#268BD2"></circle>
+<circle cx="430.20" cy="168.63" r="3.00"  fill="#268BD2"></circle>
+<circle cx="436.77" cy="183.42" r="3.00"  fill="#268BD2"></circle>
+<circle cx="443.34" cy="159.02" r="3.00"  fill="#268BD2"></circle>
+<circle cx="449.90" cy="169.72" r="3.00"  fill="#268BD2"></circle>
+<circle cx="456.46" cy="140.53" r="3.00"  fill="#268BD2"></circle>
+<circle cx="463.03" cy="177.80" r="3.00"  fill="#268BD2"></circle>
+<circle cx="469.60" cy="161.04" r="3.00"  fill="#268BD2"></circle>
+<circle cx="476.16" cy="145.30" r="3.00"  fill="#268BD2"></circle>
+<circle cx="482.73" cy="129.58" r="3.00"  fill="#268BD2"></circle>
+<circle cx="489.29" cy="147.02" r="3.00"  fill="#268BD2"></circle>
+<circle cx="495.86" cy="112.71" r="3.00"  fill="#268BD2"></circle>
+<circle cx="502.42" cy="141.95" r="3.00"  fill="#268BD2"></circle>
+<circle cx="508.99" cy="116.53" r="3.00"  fill="#268BD2"></circle>
+<circle cx="515.55" cy="157.99" r="3.00"  fill="#268BD2"></circle>
+<circle cx="522.11" cy="114.45" r="3.00"  fill="#268BD2"></circle>
+<circle cx="528.68" cy="116.94" r="3.00"  fill="#268BD2"></circle>
+<circle cx="535.24" cy="117.98" r="3.00"  fill="#268BD2"></circle>
+<circle cx="541.81" cy="89.46" r="3.00"  fill="#268BD2"></circle>
+<circle cx="548.38" cy="134.12" r="3.00"  fill="#268BD2"></circle>
+<circle cx="554.94" cy="90.22" r="3.00"  fill="#268BD2"></circle>
+<circle cx="561.51" cy="149.37" r="3.00"  fill="#268BD2"></circle>
+<circle cx="568.07" cy="99.62" r="3.00"  fill="#268BD2"></circle>
+<circle cx="574.64" cy="108.18" r="3.00"  fill="#268BD2"></circle>
+</g>
+<g  transform="translate(107.317 400.000) scale(4.87805)">
+<rect x="0.00" y="0.00" width="79.00" height="82.00" rx="0.00" ry="0.00"  fill="#002B36"></rect>
+<g  transform="translate(19 28)" font-size="6" font-family="Ubuntu Mono" font-weight="bold" fill="#839496">
+<text x="0.00" y="0.00" transform=" rotate(-90 0 0)" text-anchor="start">1K</text>
+<text x="9.00" y="0.00" transform=" rotate(-90 9 0)" text-anchor="start">4K</text>
+<text x="19.00" y="0.00" transform=" rotate(-90 19 0)" text-anchor="start">16K</text>
+<text x="28.00" y="0.00" transform=" rotate(-90 28 0)" text-anchor="start">64K</text>
+<text x="38.00" y="0.00" transform=" rotate(-90 38 0)" text-anchor="start">256K</text>
+</g>
+<g  transform="translate(67 35)" font-size="6" font-family="Ubuntu Mono" font-weight="bold" fill="#839496">
+<text x="0.00" y="1.00" text-anchor="start">1</text>
+<text x="0.00" y="9.00" text-anchor="start">2</text>
+<text x="0.00" y="16.00" text-anchor="start">4</text>
+<text x="0.00" y="23.00" text-anchor="start">8</text>
+<text x="0.00" y="30.00" text-anchor="start">16</text>
+</g>
+<text x="4.00" y="10.00" font-size="8" font-family="Arial, Helvetica, sans-serif" font-weight="bold" fill="#839496" text-anchor="start">throughput MB/s</text>
+<g  transform="translate(14 31)">
+<rect x="0.00" y="0.00" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#268BD2"><title>200</title></rect>
+<rect x="9.60" y="0.00" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#348BBD"><title>317</title></rect>
+<rect x="19.20" y="0.00" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#3E8BAF"><title>400</title></rect>
+<rect x="28.80" y="0.00" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#468BA3"><title>464.4</title></rect>
+<rect x="38.40" y="0.00" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#4C8A9A"><title>517</title></rect>
+<rect x="0.00" y="7.20" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#3E8BAF"><title>400</title></rect>
+<rect x="9.60" y="7.20" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#5A8A86"><title>634</title></rect>
+<rect x="19.20" y="7.20" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#6E8A68"><title>800</title></rect>
+<rect x="28.80" y="7.20" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#7D8A52"><title>928.8</title></rect>
+<rect x="38.40" y="7.20" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#8A8A3F"><title>1034</title></rect>
+<rect x="0.00" y="14.40" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#568A8C"><title>600</title></rect>
+<rect x="9.60" y="14.40" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#808A4E"><title>951</title></rect>
+<rect x="19.20" y="14.40" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#9E8922"><title>1200</title></rect>
+<rect x="28.80" y="14.40" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#B58900"><title>1393</title></rect>
+<rect x="38.40" y="14.40" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#BA7D06"><title>1551</title></rect>
+<rect x="0.00" y="21.60" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#6E8A68"><title>800</title></rect>
+<rect x="9.60" y="21.60" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#A68916"><title>1268</title></rect>
+<rect x="19.20" y="21.60" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#BC7A08"><title>1600</title></rect>
+<rect x="28.80" y="21.60" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#C46712"><title>1858</title></rect>
+<rect x="38.40" y="21.60" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#CB581B"><title>2068</title></rect>
+<rect x="0.00" y="28.80" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#868A45"><title>1000</title></rect>
+<rect x="9.60" y="28.80" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#BB7B08"><title>1585</title></rect>
+<rect x="19.20" y="28.80" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#C95D18"><title>2000</title></rect>
+<rect x="28.80" y="28.80" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#D34525"><title>2322</title></rect>
+<rect x="38.40" y="28.80" width="8.64" height="6.48" rx="1.50" ry="1.50"  fill="#DC322F"><title>2585</title></rect>
+</g>
+</g>
+<g  transform="translate(600 400)">
+<rect x="0.00" y="0.00" width="600.00" height="400.00" rx="0.00" ry="0.00"  fill="#002B36"></rect>
+<rect x="56.00" y="34.00" width="530.00" height="322.00" rx="2.00" ry="2.00"  fill="#073642"></rect>
+<line x1="56.00" y1="34.00" x2="56.00" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="56.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">1</text>
+<line x1="131.71" y1="34.00" x2="131.71" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="131.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">2</text>
+<line x1="207.43" y1="34.00" x2="207.43" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="207.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">3</text>
+<line x1="283.14" y1="34.00" x2="283.14" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="283.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">4</text>
+<line x1="358.86" y1="34.00" x2="358.86" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="358.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">5</text>
+<line x1="434.57" y1="34.00" x2="434.57" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="434.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">6</text>
+<line x1="510.29" y1="34.00" x2="510.29" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="510.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">7</text>
+<line x1="586.00" y1="34.00" x2="586.00" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="586.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">8</text>
+<line x1="56.00" y1="356.00" x2="586.00" y2="356.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="36.00" y="359.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">2</text>
+<line x1="56.00" y1="302.33" x2="586.00" y2="302.33" stroke="#586E75" stroke-width="0.50"/>
+<text x="36.00" y="305.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">4</text>
+<line x1="56.00" y1="248.67" x2="586.00" y2="248.67" stroke="#586E75" stroke-width="0.50"/>
+<text x="36.00" y="251.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">6</text>
+<line x1="56.00" y1="195.00" x2="586.00" y2="195.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="36.00" y="198.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">8</text>
+<line x1="56.00" y1="141.33" x2="586.00" y2="141.33" stroke="#586E75" stroke-width="0.50"/>
+<text x="31.00" y="144.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">10</text>
+<line x1="56.00" y1="87.67" x2="586.00" y2="87.67" stroke="#586E75" stroke-width="0.50"/>
+<text x="31.00" y="90.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">12</text>
+<line x1="56.00" y1="34.00" x2="586.00" y2="34.00" stroke="#586E75" stroke-width="0.50"/>
+<text x="31.00" y="37.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#839496" text-anchor="start">14</text>
+<line x1="56.00" y1="34.00" x2="56.00" y2="356.00" stroke="#586E75" stroke-width="1.20"/>
+<line x1="56.00" y1="356.00" x2="586.00" y2="356.00" stroke="#586E75" stroke-width="1.20"/>
+<text x="321.00" y="18.00" font-size="13" font-family="Arial, sans-serif" font-weight="bold" fill="#839496" text-anchor="start">two series</text>
+<polyline points="56.00,356.00 131.71,275.50 207.43,302.33 283.14,195.00 358.86,221.83 434.57,114.50 510.29,168.17 586.00,60.83" fill="none" stroke="#268BD2" stroke-width="1.80"/>
+<polyline points="56.00,60.83 131.71,168.17 207.43,114.50 283.14,221.83 358.86,195.00 434.57,302.33 510.29,275.50 586.00,356.00" fill="none" stroke="#859900" stroke-width="1.80"/>
+<rect x="476.00" y="38.00" width="10.00" height="10.00" rx="1.00" ry="1.00"  fill="#268BD2"></rect>
+<text x="490.00" y="46.00" font-size="9" font-family="Arial, sans-serif" font-weight="normal" fill="#839496" text-anchor="start">rising</text>
+<rect x="476.00" y="52.00" width="10.00" height="10.00" rx="1.00" ry="1.00"  fill="#859900"></rect>
+<text x="490.00" y="60.00" font-size="9" font-family="Arial, sans-serif" font-weight="normal" fill="#839496" text-anchor="start">falling</text>
+</g>
+</svg>
