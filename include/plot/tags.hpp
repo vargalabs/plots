@@ -40,5 +40,9 @@ namespace plot::tag {
 	struct xlog_t{};
 	struct ylog_t{};
 	struct theme_t{};   // per-call theme override (plot::use{...})
+	// deferred-plot composition (plot::view + plot::grid)
+	struct view_t{};    // identifies a deferred view in a variadic grid(...)
+	struct rows_t{};    // grid row count
+	struct cols_t{};    // grid column count
 }
 #endif

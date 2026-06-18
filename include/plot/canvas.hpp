@@ -43,6 +43,9 @@ namespace plot::impl {
 
 		void group (std::variant<std::size_t, align_t> x, std::variant<std::size_t, align_t> y,
 				const attribute_t& attr, std::function<void()> const& call );
+		// translate + uniform scale group: emits transform="translate(x y) scale(s)".
+		// Used by plot::grid to fit a view's natural layout into its cell rect.
+		void group_scaled (float x, float y, float scale, std::function<void()> const& call );
 		void rect(float x, float y, float width, float height, float rx, float ry, const attribute_t& attr );
 		void circle(float cx, float cy, float radius, const attribute_t& attr );
 		void line(float x1, float y1, float x2, float y2, const attribute_t& attr );
@@ -77,6 +80,7 @@ namespace plot::impl {
 		const std::string gr_end_ = "</g>\n";
 		const std::string rotate_ = " rotate({} {} {})";
 		const std::string translate_ = "translate({} {})";
+		const std::string translate_scale_ = "translate({:.3f} {:.3f}) scale({:.5f})";
 		const std::string transform_ = " transform=\"{}\"";
 
 		const std::string svg_start_  = "<svg viewBox=\"{} {} {} {}\"  xmlns=\"http://www.w3.org/2000/svg\">\n";
@@ -133,6 +137,14 @@ inline void plot::impl::canvas_t::group (std::variant<std::size_t, align_t> x, s
 	if( attr.color )  _attr += fmt(fill_, static_cast<unsigned>(attr.color.value()) );
 
 	os << fmt(gr_begin_, _attr); // group has properties set
+		call();
+	os << gr_end_;
+}
+
+inline void plot::impl::canvas_t::group_scaled (float x, float y, float scale,
+		std::function<void()> const& call ){
+	std::string _attr = fmt(transform_, fmt(translate_scale_, x, y, scale));
+	os << fmt(gr_begin_, _attr);
 		call();
 	os << gr_end_;
 }
