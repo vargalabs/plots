@@ -44,5 +44,11 @@ namespace plot::tag {
 	struct view_t{};    // identifies a deferred view in a variadic grid(...)
 	struct rows_t{};    // grid row count
 	struct cols_t{};    // grid column count
+	// new plot-type named arguments (issue #6)
+	struct bins_t{};      // histogram bin count
+	struct bandwidth_t{}; // KDE bandwidth
+	struct levels_t{};    // contour iso-level count
+	struct donut_t{};     // pie inner-radius fraction (0 = full pie)
+	struct hex_t{};       // hexagonal heatmap style marker
 }
 #endif

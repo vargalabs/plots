@@ -18,4 +18,6 @@
 	#include "gr.hpp"
 	#include "heatmap.hpp"
 	#include "view.hpp"
+	// new plot types (issue #6) — each a deferred plot::view built on view.hpp
+	#include "histogram.hpp"
 #endif
