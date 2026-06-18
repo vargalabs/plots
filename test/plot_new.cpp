@@ -73,5 +73,15 @@ int main(){
 		if(out.find("<polyline") == std::string::npos) return 9;  // iso segments
 	}
 
+	// ---- ohlc (candlestick) -------------------------------------------------
+	{
+		std::vector<double> tt{1,2,3,4,5}, op{10,11,10,12,11},
+			hh{12,12,11,13,12}, ll{9,10,9,11,10}, cl{11,10,11,11,12};
+		auto out = render_of(plot::ohlc(tt,op,hh,ll,cl, plot::title("ohlc")));
+		if(!well_formed(out)) return 10;
+		if(out.find("<line") == std::string::npos) return 11;   // wicks
+		if(out.find("<rect") == std::string::npos) return 12;   // bodies
+	}
+
 	return 0;
 }

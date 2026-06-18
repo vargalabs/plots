@@ -23,4 +23,5 @@
 	#include "bar.hpp"
 	#include "density.hpp"
 	#include "contour.hpp"
+	#include "ohlc.hpp"
 #endif
