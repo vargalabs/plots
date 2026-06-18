@@ -111,19 +111,45 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(){</div>
 <div class="line">    plot::theme(plot::solarized_dark);            <span class="comment">// process-global default theme</span></div>
+<div class="line">    std::vector&lt;double&gt; x{ 1e3, 4e3, 16e3, 64e3, 256e3, 1e6 },</div>
+<div class="line">      scalar{ 820, 1500, 2600, 3400, 3900, 4100 },</div>
+<div class="line">      simd  { 1900, 4100, 7200, 9800, 11500, 12200 };</div>
 <div class="line"> </div>
-<div class="line">    std::vector&lt;double&gt; x{ 1e3, 4e3, 16e3, 64e3, 256e3, 1e6 };</div>
-<div class="line">    std::vector&lt;double&gt; scalar{ 820, 1500, 2600, 3400, 3900, 4100 };</div>
-<div class="line">    std::vector&lt;double&gt; simd  { 1900, 4100, 7200, 9800, 11500, 12200 };</div>
-<div class="line"> </div>
-<div class="line">    plot::line(std::string(<span class="stringliteral">&quot;throughput.svg&quot;</span>), x,</div>
-<div class="line">        { { <span class="stringliteral">&quot;scalar&quot;</span>, scalar }, { <span class="stringliteral">&quot;simd&quot;</span>, simd } },</div>
-<div class="line">        plot::title(<span class="stringliteral">&quot;throughput vs payload size&quot;</span>),</div>
-<div class="line">        plot::xlabel{<span class="stringliteral">&quot;payload [bytes]&quot;</span>}, plot::ylabel{<span class="stringliteral">&quot;throughput [MB/s]&quot;</span>},</div>
-<div class="line">        plot::xlog{10.0},</div>
-<div class="line">        plot::width{720}, plot::height{440});</div>
+<div class="line">    plot::line(std::string(<span class="stringliteral">&quot;throughput.svg&quot;</span>), x, {{ <span class="stringliteral">&quot;scalar&quot;</span>, scalar }, { <span class="stringliteral">&quot;simd&quot;</span>, simd }},</div>
+<div class="line">        plot::title(<span class="stringliteral">&quot;throughput vs payload size&quot;</span>),  plot::xlabel{<span class="stringliteral">&quot;payload [bytes]&quot;</span>}, plot::ylabel{<span class="stringliteral">&quot;throughput [MB/s]&quot;</span>},</div>
+<div class="line">        plot::xlog{10.0},  plot::width{720}, plot::height{440});</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2>Features</h2>
+</div><!-- fragment --> <h2>Plots</h2>
+<ul>
+<li><code>plot::line(os|"file.svg", xs, ys, opts...)</code> — single line series, <code>ys</code> vs <code>xs</code> (both <code>std::vector</code>); axes auto-scaled. Multi-series form: <code>plot::line(os|"file.svg", xs, {{"label", data}, ...}, opts...)</code> draws one line per series with a legend.</li>
+<li><code>plot::scatter(os|"file.svg", xs, ys, opts...)</code> — scatter of points, <code>ys</code> vs <code>xs</code>; axes auto-scaled.</li>
+<li><code>plot::heatmap(os|"file.svg", mat, plot::axis::x(xlabels), plot::axis::y(ylabels), opts...)</code> — 2-D grid colored by cell value. <code>mat</code> is a <code>plot::mat&lt;T&gt;{ ptr, rows, cols }</code> (row-major view); floating-point → continuous gradient, integral → categorical. <code>axis::x</code>/<code>axis::y</code> tick labels are required.</li>
+</ul>
+<p>Where the first argument is a <code>std::ostream&amp;</code> OR a filename, followed by the data, then the named <code>opts...</code> (<code>title</code>, <code>xlabel</code>, <code>ylabel</code>, <code>xlog</code>, <code>ylog</code>, <code>width</code>, <code>height</code>, <code>use{theme}</code>) in any order. The active theme is the global <code>plot::theme(...)</code> default, or a per-call <code>plot::use{ plot::solarized_light }</code> override.</p>
+<p>Accuracy notes from the headers:</p><ul>
+<li>Each driver has a std::ostream&amp; overload and a filename (std::string) overload — the filename one just opens a truncating ofstream.</li>
+<li>plot::line is the only one with the {{"label", data}, …} multi-series overload (each series is a {std::string, std::vector&lt;double&gt;}); scatter/heatmap are single-data.</li>
+<li>heatmap is the one that requires plot::axis::x/axis::y (static-asserted); line/scatter derive their axes from the data and instead take xlabel/ylabel.</li>
+</ul>
+<h2>Options (pythonic syntax)</h2>
+<ul>
+<li><code>plot::title("Throughput vs size")</code> — chart title (string); optional 2nd arg <code>plot::position{x,y}</code> and a font.</li>
+<li><code>plot::xlabel{"payload [bytes]"}</code> — x-axis label (string).</li>
+<li><code>plot::ylabel{"throughput [MB/s]"}</code> — y-axis label (string).</li>
+<li><code>plot::xlog{10.0}</code> — log-scale the x-axis; arg is the log base (default <code>10.0</code>, use <code>plot::xlog{2.0}</code> for log2). <code>plot::ylog{...}</code> is the y-axis analogue.</li>
+<li><code>plot::width{720}</code> — canvas width in pixels.</li>
+<li><code>plot::height{440}</code> — canvas height in pixels.</li>
+<li><code>plot::axis::x(std::vector&lt;std::string&gt;{"1K","4K","16K","1M"})</code> — x-axis tick labels (heatmap).</li>
+<li><code>plot::axis::y(std::vector&lt;std::string&gt;{"int","float","double"})</code> — y-axis tick labels (heatmap).</li>
+</ul>
+<p>All of the above are passed as named options <b>in any order</b> after the positional arguments (<code>os</code>/filename, then the data). e.g.: </p><div class="fragment"><div class="line">plot::line(<span class="stringliteral">&quot;bw.svg&quot;</span>, xs, ys,</div>
+<div class="line">    plot::ylabel{<span class="stringliteral">&quot;MB/s&quot;</span>}, plot::title(<span class="stringliteral">&quot;bandwidth&quot;</span>),   <span class="comment">// any order</span></div>
+<div class="line">    plot::xlog{10.0}, plot::xlabel{<span class="stringliteral">&quot;bytes&quot;</span>}, plot::width{720}, plot::height{440});</div>
+</div><!-- fragment --><p> Two accuracy notes from the actual headers:</p><ul>
+<li>Brace vs. parens: xlabel/ylabel/xlog/ylog/width/height are aggregates → brace-init {…}. title and axis::x/axis::y are constructed → use parens (…).</li>
+<li>Where each applies: title/xlabel/ylabel/xlog/width/height are for plot::line/plot::scatter (auto-scaled axes), where xlabel/ylabel name the axes. plot::heatmap uses plot::axis::x/y (the tick labels are required there) plus title. So axis::x/y and xlabel/ylabel are the heatmap-vs-line/scatter counterparts, not interchangeable.</li>
+</ul>
+<h2>Features</h2>
 <ul>
 <li><b>GR-style API</b> — one call per chart (<code>plot::line</code> / <code>plot::scatter</code> / <code>plot::heatmap</code>) with order-free named arguments (<code>plot::title</code>, <code>plot::xlabel</code>, <code>plot::ylabel</code>, <code>plot::xlog</code>, <code>plot::width</code>, <code>plot::height</code>, <code>plot::axis::x/y</code>).</li>
 <li><b>Solarized themes</b> — <code>plot::solarized_dark</code> and <code>plot::solarized_light</code> presets; set a process-global default with <code>plot::theme(...)</code> or override a single render with <code>plot::use{...}</code>. A <code>plot::theme_t</code> carries structural colours, a cycled categorical series palette, and a 3-stop continuous gradient used by the heatmap.</li>
@@ -133,8 +159,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <h2>Examples</h2>
 <p>The three programs under <code>examples/</code> (build with <code>-DPLOTS_BUILD_EXAMPLES=ON</code>) each emit one of the charts below.</p>
 <h3>Line chart — <code>plot::line</code></h3>
-<p>Multi-series throughput on a log-x axis, Solarized dark.</p>
-<div class="image">
+<p>Multi-series throughput on a log-x axis, Solarized dark.</p><div class="image">
 <object type="image/svg+xml" data="line_chart.svg" style="pointer-events: none;"></object>
 <div class="caption">
 Multi-series line chart on a log-x axis</div></div>
