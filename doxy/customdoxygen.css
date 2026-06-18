@@ -201,3 +201,12 @@ table.memname > tbody > tr > td.paramtype {
 /* No margins on paramtype/paramname: Doxygen emits a non-breaking space
  * (&nbsp;) at the end of each paramtype cell which already acts as the
  * type/name separator. Adding CSS margin on top doubles that gap. */
+
+/* ------------------------------------------------------------------ */
+/* Gallery — theme-aware example images                                */
+/* ------------------------------------------------------------------ */
+
+/* gallery: show the image matching the active (toggle/system) theme */
+.only-dark { display: none; }
+html.dark-mode .only-dark  { display: inline-block; }
+html.dark-mode .only-light { display: none; }

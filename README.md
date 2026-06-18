@@ -75,6 +75,27 @@ target_link_libraries(my_app PRIVATE plot::plot)
 - `examples/heatmap` → `heatmap.svg`
 - `examples/dashboard` → `dashboard.svg` (a 2×2 `view`/`grid` figure)
 
+## Gallery
+
+Every shipping driver, rendered with the Solarized theme. Each image follows your
+GitHub color scheme (light or dark) automatically.
+
+| Code | Plot |
+|------|------|
+| `plot::line(file, xs, {{"scalar", a}, {"simd", b}}, plot::title(…), plot::xlog{10.0})` | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/line_chart.svg"><img src="doxy/light/line_chart.svg" width="240"></picture> |
+| `plot::scatter(file, xs, ys, plot::title(…), plot::xlabel{"x"}, plot::ylabel{"y"})` | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/scatter.svg"><img src="doxy/light/scatter.svg" width="240"></picture> |
+| `plot::heatmap(file, mat, plot::axis::x(cols), plot::axis::y(rows), plot::title(…))` | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/heatmap.svg"><img src="doxy/light/heatmap.svg" width="240"></picture> |
+| `plot::histogram(values, plot::bins{24}, plot::title(…))` | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/histogram.svg"><img src="doxy/light/histogram.svg" width="240"></picture> |
+| `plot::bar(labels, values, plot::title(…), plot::xlabel{"day"}, plot::ylabel{"units"})` | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/bar.svg"><img src="doxy/light/bar.svg" width="240"></picture> |
+| `plot::density(values, plot::title(…), plot::xlabel{"value"}, plot::ylabel{"density"})` | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/density.svg"><img src="doxy/light/density.svg" width="240"></picture> |
+| `plot::contour(mat, plot::levels{12}, plot::title(…), plot::xlabel{"x"}, plot::ylabel{"y"})` | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/contour.svg"><img src="doxy/light/contour.svg" width="240"></picture> |
+| `plot::ohlc(t, open, high, low, close, plot::title(…), plot::ylabel{"price"})` | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/ohlc.svg"><img src="doxy/light/ohlc.svg" width="240"></picture> |
+| `plot::graph(nodes, edges, plot::title(…))` | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/graph.svg"><img src="doxy/light/graph.svg" width="240"></picture> |
+| `plot::pie(labels, values, plot::title(…))` | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/pie.svg"><img src="doxy/light/pie.svg" width="240"></picture> |
+| `plot::pie(labels, values, plot::donut{0.55}, plot::title(…))` | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/donut.svg"><img src="doxy/light/donut.svg" width="240"></picture> |
+| `plot::hexbin(mat, plot::title(…), plot::width{680}, plot::height{520})` | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/hexbin.svg"><img src="doxy/light/hexbin.svg" width="240"></picture> |
+| `plot::grid(file, plot::rows{2}, plot::cols{2}, view…, plot::width{1200}, plot::height{800})` | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/dashboard.svg"><img src="doxy/light/dashboard.svg" width="240"></picture> |
+
 ## Documentation
 
 Full API reference: [vargalabs.github.io/plots](https://vargalabs.github.io/plots/)
