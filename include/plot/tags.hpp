@@ -48,7 +48,7 @@ namespace plot::tag {
 	struct bins_t{};      // histogram bin count
 	struct bandwidth_t{}; // KDE bandwidth
 	struct levels_t{};    // contour iso-level count
-	struct donut_t{};     // pie inner-radius fraction (0 = full pie)
+	struct hole_t{};      // pie/donut inner-radius hole fraction (0 = full pie)
 	struct hex_t{};       // hexagonal heatmap style marker
 	struct wireframe_t{}; // outline-only bars/bins (no fill) — issue #13
 }

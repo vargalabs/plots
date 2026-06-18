@@ -1,10 +1,11 @@
 /* Copyright (c) 2026 Steven Varga, Toronto, ON, Canada
  * MIT License — see LICENSE
  *
- * plot::pie(labels, values, opts...) — a deferred view (plot::view) drawing a
- * pie chart, or a donut when plot::donut{r} (inner-radius fraction in (0,1)) is
- * given. Each slice is a FILLED <polygon> wedge: the arc is segmented into short
- * chords, centre→arc→centre for a pie, or outer-arc→inner-arc for a donut ring.
+ * plot::pie(labels, values, opts...) and plot::donut(labels, values, opts...) —
+ * deferred views (plot::view) drawing a pie / donut. donut defaults to a 0.55
+ * inner-radius hole; adjust either with plot::hole{r} (r in (0,1)). Each slice is
+ * a FILLED <polygon> wedge: the arc is segmented into short chords, centre→arc→
+ * centre for a pie, or outer-arc→inner-arc for a donut ring.
  * Slices are filled with the theme colour. Slice colours cycle theme.series; a
  * label is placed at the slice's mid-angle.
  *
@@ -31,21 +32,22 @@
 #include "view.hpp"
 
 namespace plot {
-	// donut inner-radius fraction in (0,1); 0 (or absent) ⇒ a full pie.
-	struct donut { using value_type = tag::donut_t; double value; };
+	// inner-radius hole fraction in (0,1); 0 (or absent) ⇒ a full pie. Set by
+	// plot::donut (default 0.55) and accepted by plot::pie too.
+	struct hole { using value_type = tag::hole_t; double value; };
 }
 
 namespace plot::impl {
 	template <class... opt_t>
-	double donut_of(const opt_t&... opts){
-		using d_t = typename arg::tpos<tag::donut_t, opt_t...>;
+	double hole_of(double fallback, const opt_t&... opts){
+		using d_t = typename arg::tpos<tag::hole_t, opt_t...>;
 		if constexpr( d_t::present ){
 			auto tuple = std::forward_as_tuple(opts...);
 			double r = std::get<d_t::position>(tuple).value;
 			if( r < 0 ) r = 0; else if( r > 0.95 ) r = 0.95;
 			return r;
 		}
-		return 0.0;
+		return fallback;
 	}
 
 	template <class... opt_t>
@@ -54,6 +56,7 @@ namespace plot::impl {
 		std::vector<std::string> labels;
 		std::vector<double> values;
 		std::tuple<opt_t...> opts;
+		double default_inner = 0.0;   // plot::pie ⇒ 0 (full); plot::donut ⇒ 0.55
 
 		std::pair<std::size_t,std::size_t> natural() const {
 			return std::apply([](const auto&... o){
@@ -63,7 +66,7 @@ namespace plot::impl {
 			std::apply([&](const auto&... o){
 				const theme_t& th = impl::resolve_theme(o...);
 				auto [title, xl, yl] = impl::texts(o...);
-				const double inner = impl::donut_of(o...);
+				const double inner = impl::hole_of(default_inner, o...);
 				using attribute_t = plot::attribute::element_t;
 
 				const std::size_t n = std::min(labels.size(), values.size());
@@ -143,7 +146,15 @@ namespace plot {
 	impl::pie_view<opt_t...> pie(std::vector<std::string> labels,
 			std::vector<double> values, opt_t... opts){
 		return impl::pie_view<opt_t...>{ std::move(labels), std::move(values),
-				std::make_tuple(opts...) };
+				std::make_tuple(opts...) };   // default_inner = 0 → full pie
+	}
+
+	// donut: a pie with a default inner-radius hole (0.55); adjust with plot::hole{}.
+	template <class... opt_t>
+	impl::pie_view<opt_t...> donut(std::vector<std::string> labels,
+			std::vector<double> values, opt_t... opts){
+		return impl::pie_view<opt_t...>{ std::move(labels), std::move(values),
+				std::make_tuple(opts...), 0.55 };
 	}
 }
 #endif
