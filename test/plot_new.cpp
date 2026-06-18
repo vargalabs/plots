@@ -14,6 +14,7 @@
 #include <vector>
 #include <cstddef>
 #include <cmath>
+#include <utility>
 
 namespace {
 	std::size_t count(const std::string& hay, const std::string& needle){
@@ -105,6 +106,48 @@ int main(){
 		auto dn = render_of(plot::pie(labels, vals, plot::donut{0.5}, plot::title("donut")));
 		if(!well_formed(dn)) return 20;
 		if(dn.find("<polyline") == std::string::npos) return 21;   // ring wedges
+	}
+
+	// ---- hexbin (hexagonal heatmap) -----------------------------------------
+	{
+		const std::size_t R=8, C=8;
+		std::vector<double> field(R*C);
+		for(std::size_t i=0;i<R;++i) for(std::size_t j=0;j<C;++j)
+			field[i*C+j] = double(i*C+j);
+		plot::mat<double> m{ field.data(), R, C };
+		auto out = render_of(plot::hexbin(m, plot::title("hex")));
+		if(!well_formed(out)) return 22;
+		if(out.find("<polyline") == std::string::npos) return 23;  // hexagons
+		// honeycomb -> R*C hex cells.
+		if(count(out, "<polyline") < R*C) return 24;
+	}
+
+	// ---- all eight new types compose into a single plot::grid figure --------
+	{
+		std::vector<double> v{1,2,2,3,3,4,5,2,3,4};
+		std::vector<std::string> labels{"a","b","c"};
+		std::vector<double> vals{3,5,2};
+		std::vector<std::pair<std::size_t,std::size_t>> edges{{0,1},{1,2},{2,0}};
+		const std::size_t R=6, C=6; std::vector<double> field(R*C);
+		for(std::size_t i=0;i<R*C;++i) field[i] = double(i);
+		plot::mat<double> m{ field.data(), R, C };
+		std::vector<double> tt{1,2,3}, op{10,11,10}, hh{12,12,11}, ll{9,10,9}, cl{11,10,11};
+
+		std::ostringstream os;
+		plot::grid(os, plot::rows{2}, plot::cols{4},
+			plot::histogram(v, plot::title("H")),
+			plot::bar(labels, vals, plot::title("B")),
+			plot::density(v, plot::title("D")),
+			plot::contour(m, plot::title("C")),
+			plot::ohlc(tt,op,hh,ll,cl, plot::title("O")),
+			plot::graph(labels, edges, plot::title("G")),
+			plot::pie(labels, vals, plot::title("P")),
+			plot::hexbin(m, plot::title("X")),
+			plot::width{1600}, plot::height{800});
+		const std::string out = os.str();
+		if(!well_formed(out)) return 25;
+		if(count(out, "<svg")   != 1) return 26;   // exactly one outer document
+		if(count(out, "</svg>") != 1) return 27;
 	}
 
 	return 0;

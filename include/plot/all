@@ -26,4 +26,5 @@
 	#include "ohlc.hpp"
 	#include "graph.hpp"
 	#include "pie.hpp"
+	#include "hexbin.hpp"
 #endif
