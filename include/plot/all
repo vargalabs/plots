@@ -24,4 +24,5 @@
 	#include "density.hpp"
 	#include "contour.hpp"
 	#include "ohlc.hpp"
+	#include "graph.hpp"
 #endif

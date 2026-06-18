@@ -83,5 +83,16 @@ int main(){
 		if(out.find("<rect") == std::string::npos) return 12;   // bodies
 	}
 
+	// ---- graph (circular node-link) -----------------------------------------
+	{
+		std::vector<std::string> nodes{"A","B","C","D","E"};
+		std::vector<std::pair<std::size_t,std::size_t>> edges{{0,1},{1,2},{2,3},{3,4},{4,0},{0,2}};
+		auto out = render_of(plot::graph(nodes, edges, plot::title("graph")));
+		if(!well_formed(out)) return 13;
+		if(out.find("<line")   == std::string::npos) return 14;   // edges
+		if(out.find("<circle") == std::string::npos) return 15;   // nodes
+		if(out.find(">A<")     == std::string::npos) return 16;   // node label
+	}
+
 	return 0;
 }
