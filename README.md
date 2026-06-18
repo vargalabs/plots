@@ -49,6 +49,21 @@ int main() {
   third-party plotting/matrix/formatting libraries.
 - **CMake-friendly** — `find_package(plot)` exposes the `plot::plot` target.
 
+## Themes
+
+Set the process-global default with `plot::theme(t)`, or override a single render
+with `plot::use{t}`:
+
+```cpp
+plot::theme(plot::tokyo_night);                 // process-global
+plot::line("bw.svg", x, y, plot::use{plot::dracula});   // per-call override
+```
+
+Presets shipping in `theme.hpp` (added in a parallel lane): `solarized_dark`,
+`solarized_light`, `dark_plus`, `light_plus`, `monokai`, `dracula`, `nord`,
+`one_dark`, `gruvbox_dark`, `gruvbox_light`, `tomorrow_night`, `night_owl`,
+`material`, `tokyo_night`.
+
 ## Build & install
 
 ```bash

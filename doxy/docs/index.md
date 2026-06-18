@@ -132,6 +132,7 @@ shown above.
 - `plot::ohlc(t, open, high, low, close, opts...)` — open/high/low/close candles *(coming in the gallery)*.
 - `plot::graph(nodes, edges, opts...)` — node/edge network layout *(coming in the gallery)*.
 - `plot::pie(labels, values, opts...)` — proportional wedges *(coming in the gallery)*.
+- `plot::pie(labels, values, plot::donut{0.55}, opts...)` — donut (pie with an inner-radius hole).
 - `plot::hexbin(xs, ys, opts...)` — hexagonal density binning *(coming in the gallery)*.
 
 ## Gallery
@@ -140,21 +141,44 @@ Every shipping driver, rendered with the Solarized theme. The image follows the
 page theme — use the moon/sun toggle (top-right) to switch between the Solarized
 **dark** and **light** renders.
 
-| Code | Plot |
-|------|------|
-| `plot::line(file, xs, {{"scalar", a}, {"simd", b}}, plot::title(…), plot::xlog{10.0})` | <img class="only-light" src="light/line_chart.svg" width="320"> <img class="only-dark" src="dark/line_chart.svg" width="320"> |
-| `plot::scatter(file, xs, ys, plot::title(…), plot::xlabel{"x"}, plot::ylabel{"y"})` | <img class="only-light" src="light/scatter.svg" width="320"> <img class="only-dark" src="dark/scatter.svg" width="320"> |
-| `plot::heatmap(file, mat, plot::axis::x(cols), plot::axis::y(rows), plot::title(…))` | <img class="only-light" src="light/heatmap.svg" width="320"> <img class="only-dark" src="dark/heatmap.svg" width="320"> |
-| `plot::histogram(values, plot::bins{24}, plot::title(…))` | <img class="only-light" src="light/histogram.svg" width="320"> <img class="only-dark" src="dark/histogram.svg" width="320"> |
-| `plot::bar(labels, values, plot::title(…), plot::xlabel{"day"}, plot::ylabel{"units"})` | <img class="only-light" src="light/bar.svg" width="320"> <img class="only-dark" src="dark/bar.svg" width="320"> |
-| `plot::density(values, plot::title(…), plot::xlabel{"value"}, plot::ylabel{"density"})` | <img class="only-light" src="light/density.svg" width="320"> <img class="only-dark" src="dark/density.svg" width="320"> |
-| `plot::contour(mat, plot::levels{12}, plot::title(…), plot::xlabel{"x"}, plot::ylabel{"y"})` | <img class="only-light" src="light/contour.svg" width="320"> <img class="only-dark" src="dark/contour.svg" width="320"> |
-| `plot::ohlc(t, open, high, low, close, plot::title(…), plot::ylabel{"price"})` | <img class="only-light" src="light/ohlc.svg" width="320"> <img class="only-dark" src="dark/ohlc.svg" width="320"> |
-| `plot::graph(nodes, edges, plot::title(…))` | <img class="only-light" src="light/graph.svg" width="320"> <img class="only-dark" src="dark/graph.svg" width="320"> |
-| `plot::pie(labels, values, plot::title(…))` | <img class="only-light" src="light/pie.svg" width="320"> <img class="only-dark" src="dark/pie.svg" width="320"> |
-| `plot::pie(labels, values, plot::donut{0.55}, plot::title(…))` | <img class="only-light" src="light/donut.svg" width="320"> <img class="only-dark" src="dark/donut.svg" width="320"> |
-| `plot::hexbin(mat, plot::title(…), plot::width{680}, plot::height{520})` | <img class="only-light" src="light/hexbin.svg" width="320"> <img class="only-dark" src="dark/hexbin.svg" width="320"> |
-| `plot::grid(file, plot::rows{2}, plot::cols{2}, view…, plot::width{1200}, plot::height{800})` | <img class="only-light" src="light/dashboard.svg" width="320"> <img class="only-dark" src="dark/dashboard.svg" width="320"> |
+|  |  |  |
+|:-:|:-:|:-:|
+| <img class="only-light" src="light/line_chart.svg" width="240"> <img class="only-dark" src="dark/line_chart.svg" width="240"> | <img class="only-light" src="light/scatter.svg" width="240"> <img class="only-dark" src="dark/scatter.svg" width="240"> | <img class="only-light" src="light/heatmap.svg" width="240"> <img class="only-dark" src="dark/heatmap.svg" width="240"> |
+| <img class="only-light" src="light/histogram.svg" width="240"> <img class="only-dark" src="dark/histogram.svg" width="240"> | <img class="only-light" src="light/bar.svg" width="240"> <img class="only-dark" src="dark/bar.svg" width="240"> | <img class="only-light" src="light/density.svg" width="240"> <img class="only-dark" src="dark/density.svg" width="240"> |
+| <img class="only-light" src="light/contour.svg" width="240"> <img class="only-dark" src="dark/contour.svg" width="240"> | <img class="only-light" src="light/ohlc.svg" width="240"> <img class="only-dark" src="dark/ohlc.svg" width="240"> | <img class="only-light" src="light/graph.svg" width="240"> <img class="only-dark" src="dark/graph.svg" width="240"> |
+| <img class="only-light" src="light/pie.svg" width="240"> <img class="only-dark" src="dark/pie.svg" width="240"> | <img class="only-light" src="light/donut.svg" width="240"> <img class="only-dark" src="dark/donut.svg" width="240"> | <img class="only-light" src="light/hexbin.svg" width="240"> <img class="only-dark" src="dark/hexbin.svg" width="240"> |
+| <img class="only-light" src="light/dashboard.svg" width="240"> <img class="only-dark" src="dark/dashboard.svg" width="240"> |  |  |
+
+## Themes
+
+Every render resolves a `plot::theme_t` — structural colours, a cycled categorical
+series palette and a 3-stop continuous gradient for the heatmap. Set the
+process-global default with `plot::theme(t)`, or override a single render with a
+per-call `plot::use{t}`.
+
+```cpp
+plot::theme(plot::tokyo_night);                 // process-global
+plot::line("bw.svg", x, y, plot::use{plot::dracula});   // per-call override
+```
+
+The presets below ship in `theme.hpp` (added in a parallel lane):
+
+| Theme | Description |
+|-------|-------------|
+| `solarized_dark`  | Solarized — dark, low-contrast teal/amber base. |
+| `solarized_light` | Solarized — light, warm paper background. |
+| `dark_plus`       | VS Code Dark+ — neutral dark editor palette. |
+| `light_plus`      | VS Code Light+ — neutral light editor palette. |
+| `monokai`         | Monokai — dark with vivid green/orange/pink accents. |
+| `dracula`         | Dracula — dark, vivid pink/purple accents. |
+| `nord`            | Nord — cool, muted arctic blue-grey. |
+| `one_dark`        | One Dark — Atom-style balanced dark. |
+| `gruvbox_dark`    | Gruvbox — dark, retro warm earth tones. |
+| `gruvbox_light`   | Gruvbox — light, retro warm earth tones. |
+| `tomorrow_night`  | Tomorrow Night — soft, even-contrast dark. |
+| `night_owl`       | Night Owl — deep blue dark, high legibility. |
+| `material`        | Material — Material Design dark teal/blue. |
+| `tokyo_night`     | Tokyo Night — deep indigo dark, neon accents. |
 
 ## Building & integrating
 
