@@ -80,6 +80,28 @@ find_package(plot CONFIG REQUIRED)
 target_link_libraries(my_app PRIVATE plot::plot)
 ```
 
+### Releases & the single-header drop
+
+Each tagged release ships prebuilt packages (built by `.github/workflows/package.yml`):
+
+| Platform | Artifact |
+|----------|----------|
+| Debian / Ubuntu | `plot-dev_<ver>_all.deb` |
+| RedHat / Fedora | `plot-devel-<ver>.noarch.rpm` |
+| Windows | `plot-v<ver>-windows.exe` (NSIS) |
+| macOS | `plot-v<ver>-darwin.pkg` |
+| any | `plot-v<ver>-<os>.tar.gz` / `.zip` |
+
+The payload is a single amalgamated header `plot.hpp` (generated from
+`include/plot/` by `scripts/amalgamate.py`). Once installed — or just dropped in
+your tree — it is all you need:
+
+```cpp
+#include <plot.hpp>   // no -I plot/, no other files
+```
+
+Regenerate it manually with `python3 scripts/amalgamate.py include/plot plot.hpp`.
+
 ## Examples
 
 `-DPLOTS_BUILD_EXAMPLES=ON` builds the demos under `examples/`; each writes an
