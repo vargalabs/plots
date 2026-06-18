@@ -190,39 +190,61 @@ A 2×2 figure: line, scatter, heatmap and multi-series line tiled by plot::grid<
 <li><code>plot::ohlc(t, open, high, low, close, opts...)</code> — open/high/low/close candles *(coming in the gallery)*.</li>
 <li><code>plot::graph(nodes, edges, opts...)</code> — node/edge network layout *(coming in the gallery)*.</li>
 <li><code>plot::pie(labels, values, opts...)</code> — proportional wedges *(coming in the gallery)*.</li>
+<li><code>plot::pie(labels, values, plot::donut{0.55}, opts...)</code> — donut (pie with an inner-radius hole).</li>
 <li><code>plot::hexbin(xs, ys, opts...)</code> — hexagonal density binning *(coming in the gallery)*.</li>
 </ul>
 <h2>Gallery</h2>
 <p>Every shipping driver, rendered with the Solarized theme. The image follows the page theme — use the moon/sun toggle (top-right) to switch between the Solarized <b>dark</b> and <b>light</b> renders.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Code   </th><th class="markdownTableHeadNone">Plot    </th></tr>
+<th class="markdownTableHeadCenter"></th><th class="markdownTableHeadCenter"></th><th class="markdownTableHeadCenter"></th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>plot::line(file, xs, {{"scalar", a}, {"simd", b}}, plot::title(…), plot::xlog{10.0})</code>   </td><td class="markdownTableBodyNone"><img src="light/line_chart.svg" alt="" style="pointer-events: none;" class="only-light" width="320" class="inline"/> <img src="dark/line_chart.svg" alt="" style="pointer-events: none;" class="only-dark" width="320" class="inline"/>    </td></tr>
+<td class="markdownTableBodyCenter"><img src="light/line_chart.svg" alt="" style="pointer-events: none;" class="only-light" width="240" class="inline"/> <img src="dark/line_chart.svg" alt="" style="pointer-events: none;" class="only-dark" width="240" class="inline"/>   </td><td class="markdownTableBodyCenter"><img src="light/scatter.svg" alt="" style="pointer-events: none;" class="only-light" width="240" class="inline"/> <img src="dark/scatter.svg" alt="" style="pointer-events: none;" class="only-dark" width="240" class="inline"/>   </td><td class="markdownTableBodyCenter"><img src="light/heatmap.svg" alt="" style="pointer-events: none;" class="only-light" width="240" class="inline"/> <img src="dark/heatmap.svg" alt="" style="pointer-events: none;" class="only-dark" width="240" class="inline"/>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>plot::scatter(file, xs, ys, plot::title(…), plot::xlabel{"x"}, plot::ylabel{"y"})</code>   </td><td class="markdownTableBodyNone"><img src="light/scatter.svg" alt="" style="pointer-events: none;" class="only-light" width="320" class="inline"/> <img src="dark/scatter.svg" alt="" style="pointer-events: none;" class="only-dark" width="320" class="inline"/>    </td></tr>
+<td class="markdownTableBodyCenter"><img src="light/histogram.svg" alt="" style="pointer-events: none;" class="only-light" width="240" class="inline"/> <img src="dark/histogram.svg" alt="" style="pointer-events: none;" class="only-dark" width="240" class="inline"/>   </td><td class="markdownTableBodyCenter"><img src="light/bar.svg" alt="" style="pointer-events: none;" class="only-light" width="240" class="inline"/> <img src="dark/bar.svg" alt="" style="pointer-events: none;" class="only-dark" width="240" class="inline"/>   </td><td class="markdownTableBodyCenter"><img src="light/density.svg" alt="" style="pointer-events: none;" class="only-light" width="240" class="inline"/> <img src="dark/density.svg" alt="" style="pointer-events: none;" class="only-dark" width="240" class="inline"/>    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>plot::heatmap(file, mat, plot::axis::x(cols), plot::axis::y(rows), plot::title(…))</code>   </td><td class="markdownTableBodyNone"><img src="light/heatmap.svg" alt="" style="pointer-events: none;" class="only-light" width="320" class="inline"/> <img src="dark/heatmap.svg" alt="" style="pointer-events: none;" class="only-dark" width="320" class="inline"/>    </td></tr>
+<td class="markdownTableBodyCenter"><img src="light/contour.svg" alt="" style="pointer-events: none;" class="only-light" width="240" class="inline"/> <img src="dark/contour.svg" alt="" style="pointer-events: none;" class="only-dark" width="240" class="inline"/>   </td><td class="markdownTableBodyCenter"><img src="light/ohlc.svg" alt="" style="pointer-events: none;" class="only-light" width="240" class="inline"/> <img src="dark/ohlc.svg" alt="" style="pointer-events: none;" class="only-dark" width="240" class="inline"/>   </td><td class="markdownTableBodyCenter"><img src="light/graph.svg" alt="" style="pointer-events: none;" class="only-light" width="240" class="inline"/> <img src="dark/graph.svg" alt="" style="pointer-events: none;" class="only-dark" width="240" class="inline"/>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>plot::histogram(values, plot::bins{24}, plot::title(…))</code>   </td><td class="markdownTableBodyNone"><img src="light/histogram.svg" alt="" style="pointer-events: none;" class="only-light" width="320" class="inline"/> <img src="dark/histogram.svg" alt="" style="pointer-events: none;" class="only-dark" width="320" class="inline"/>    </td></tr>
+<td class="markdownTableBodyCenter"><img src="light/pie.svg" alt="" style="pointer-events: none;" class="only-light" width="240" class="inline"/> <img src="dark/pie.svg" alt="" style="pointer-events: none;" class="only-dark" width="240" class="inline"/>   </td><td class="markdownTableBodyCenter"><img src="light/donut.svg" alt="" style="pointer-events: none;" class="only-light" width="240" class="inline"/> <img src="dark/donut.svg" alt="" style="pointer-events: none;" class="only-dark" width="240" class="inline"/>   </td><td class="markdownTableBodyCenter"><img src="light/hexbin.svg" alt="" style="pointer-events: none;" class="only-light" width="240" class="inline"/> <img src="dark/hexbin.svg" alt="" style="pointer-events: none;" class="only-dark" width="240" class="inline"/>    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>plot::bar(labels, values, plot::title(…), plot::xlabel{"day"}, plot::ylabel{"units"})</code>   </td><td class="markdownTableBodyNone"><img src="light/bar.svg" alt="" style="pointer-events: none;" class="only-light" width="320" class="inline"/> <img src="dark/bar.svg" alt="" style="pointer-events: none;" class="only-dark" width="320" class="inline"/>    </td></tr>
+<td class="markdownTableBodyCenter"><img src="light/dashboard.svg" alt="" style="pointer-events: none;" class="only-light" width="240" class="inline"/> <img src="dark/dashboard.svg" alt="" style="pointer-events: none;" class="only-dark" width="240" class="inline"/>   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+</table>
+<h2>Themes</h2>
+<p>Every render resolves a <code>plot::theme_t</code> — structural colours, a cycled categorical series palette and a 3-stop continuous gradient for the heatmap. Set the process-global default with <code>plot::theme(t)</code>, or override a single render with a per-call <code>plot::use{t}</code>.</p>
+<div class="fragment"><div class="line">plot::theme(plot::tokyo_night);                 <span class="comment">// process-global</span></div>
+<div class="line">plot::line(<span class="stringliteral">&quot;bw.svg&quot;</span>, x, y, plot::use{plot::dracula});   <span class="comment">// per-call override</span></div>
+</div><!-- fragment --><p>The presets below ship in <code><a class="el" href="theme_8hpp_source.html">theme.hpp</a></code> (added in a parallel lane):</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Theme   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>solarized_dark</code>   </td><td class="markdownTableBodyNone">Solarized — dark, low-contrast teal/amber base.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>plot::density(values, plot::title(…), plot::xlabel{"value"}, plot::ylabel{"density"})</code>   </td><td class="markdownTableBodyNone"><img src="light/density.svg" alt="" style="pointer-events: none;" class="only-light" width="320" class="inline"/> <img src="dark/density.svg" alt="" style="pointer-events: none;" class="only-dark" width="320" class="inline"/>    </td></tr>
+<td class="markdownTableBodyNone"><code>solarized_light</code>   </td><td class="markdownTableBodyNone">Solarized — light, warm paper background.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>plot::contour(mat, plot::levels{12}, plot::title(…), plot::xlabel{"x"}, plot::ylabel{"y"})</code>   </td><td class="markdownTableBodyNone"><img src="light/contour.svg" alt="" style="pointer-events: none;" class="only-light" width="320" class="inline"/> <img src="dark/contour.svg" alt="" style="pointer-events: none;" class="only-dark" width="320" class="inline"/>    </td></tr>
+<td class="markdownTableBodyNone"><code>dark_plus</code>   </td><td class="markdownTableBodyNone">VS Code Dark+ — neutral dark editor palette.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>plot::ohlc(t, open, high, low, close, plot::title(…), plot::ylabel{"price"})</code>   </td><td class="markdownTableBodyNone"><img src="light/ohlc.svg" alt="" style="pointer-events: none;" class="only-light" width="320" class="inline"/> <img src="dark/ohlc.svg" alt="" style="pointer-events: none;" class="only-dark" width="320" class="inline"/>    </td></tr>
+<td class="markdownTableBodyNone"><code>light_plus</code>   </td><td class="markdownTableBodyNone">VS Code Light+ — neutral light editor palette.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>plot::graph(nodes, edges, plot::title(…))</code>   </td><td class="markdownTableBodyNone"><img src="light/graph.svg" alt="" style="pointer-events: none;" class="only-light" width="320" class="inline"/> <img src="dark/graph.svg" alt="" style="pointer-events: none;" class="only-dark" width="320" class="inline"/>    </td></tr>
+<td class="markdownTableBodyNone"><code>monokai</code>   </td><td class="markdownTableBodyNone">Monokai — dark with vivid green/orange/pink accents.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>plot::pie(labels, values, plot::title(…))</code>   </td><td class="markdownTableBodyNone"><img src="light/pie.svg" alt="" style="pointer-events: none;" class="only-light" width="320" class="inline"/> <img src="dark/pie.svg" alt="" style="pointer-events: none;" class="only-dark" width="320" class="inline"/>    </td></tr>
+<td class="markdownTableBodyNone"><code>dracula</code>   </td><td class="markdownTableBodyNone">Dracula — dark, vivid pink/purple accents.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>plot::pie(labels, values, plot::donut{0.55}, plot::title(…))</code>   </td><td class="markdownTableBodyNone"><img src="light/donut.svg" alt="" style="pointer-events: none;" class="only-light" width="320" class="inline"/> <img src="dark/donut.svg" alt="" style="pointer-events: none;" class="only-dark" width="320" class="inline"/>    </td></tr>
+<td class="markdownTableBodyNone"><code>nord</code>   </td><td class="markdownTableBodyNone">Nord — cool, muted arctic blue-grey.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>plot::hexbin(mat, plot::title(…), plot::width{680}, plot::height{520})</code>   </td><td class="markdownTableBodyNone"><img src="light/hexbin.svg" alt="" style="pointer-events: none;" class="only-light" width="320" class="inline"/> <img src="dark/hexbin.svg" alt="" style="pointer-events: none;" class="only-dark" width="320" class="inline"/>    </td></tr>
+<td class="markdownTableBodyNone"><code>one_dark</code>   </td><td class="markdownTableBodyNone">One Dark — Atom-style balanced dark.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>plot::grid(file, plot::rows{2}, plot::cols{2}, view…, plot::width{1200}, plot::height{800})</code>   </td><td class="markdownTableBodyNone"><img src="light/dashboard.svg" alt="" style="pointer-events: none;" class="only-light" width="320" class="inline"/> <img src="dark/dashboard.svg" alt="" style="pointer-events: none;" class="only-dark" width="320" class="inline"/>   </td></tr>
+<td class="markdownTableBodyNone"><code>gruvbox_dark</code>   </td><td class="markdownTableBodyNone">Gruvbox — dark, retro warm earth tones.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>gruvbox_light</code>   </td><td class="markdownTableBodyNone">Gruvbox — light, retro warm earth tones.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>tomorrow_night</code>   </td><td class="markdownTableBodyNone">Tomorrow Night — soft, even-contrast dark.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>night_owl</code>   </td><td class="markdownTableBodyNone">Night Owl — deep blue dark, high legibility.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>material</code>   </td><td class="markdownTableBodyNone">Material — Material Design dark teal/blue.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>tokyo_night</code>   </td><td class="markdownTableBodyNone">Tokyo Night — deep indigo dark, neon accents.   </td></tr>
 </table>
 <h2>Building &amp; integrating</h2>
 <div class="fragment"><div class="line">cmake -S . -B build -DPLOTS_BUILD_EXAMPLES=ON</div>

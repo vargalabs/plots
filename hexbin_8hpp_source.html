@@ -114,8 +114,8 @@ $(document).ready(function(){initNavTree('hexbin_8hpp_source.html',''); initResi
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * plot::hexbin(grid, opts...) — a deferred view (plot::view): a HEXAGONAL variant</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * of the continuous heatmap. Each cell of a row-major plot::mat&lt;double&gt; renders</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * as a flat-topped hexagon (a closed &lt;polyline&gt; of 6 vertices — no new canvas</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * method) coloured along theme.gradient by the cell&#39;s value normalised across the</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * as a flat-topped hexagon (a filled &lt;polygon&gt; of 6 vertices) coloured along</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * theme.gradient by the cell&#39;s value normalised across the</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * grid&#39;s [min,max]. Alternate rows are offset by half a hex width for the classic</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * honeycomb tessellation.</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> *</span></div>
@@ -221,7 +221,7 @@ $(document).ready(function(){initNavTree('hexbin_8hpp_source.html',''); initResi
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                            X.push_back(X.front()); Y.push_back(Y.front());   <span class="comment">// close</span></div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                            attribute_t ha; ha.color = plot::attribute::color_t{ col };</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                            ha.stroke = plot::attribute::stroke_t{1.0f, 1.0f, {}, {}, {}};</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                            cv.poly_line(X, Y, ha);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                            cv.polygon(X, Y, ha);</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                        }</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                    });</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            }, opts);</div>
