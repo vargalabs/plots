@@ -17,4 +17,5 @@
 	#include "theme.hpp"
 	#include "gr.hpp"
 	#include "heatmap.hpp"
+	#include "view.hpp"
 #endif
