@@ -3,8 +3,8 @@
  *
  * plot::hexbin(grid, opts...) — a deferred view (plot::view): a HEXAGONAL variant
  * of the continuous heatmap. Each cell of a row-major plot::mat<double> renders
- * as a flat-topped hexagon (a closed <polyline> of 6 vertices — no new canvas
- * method) coloured along theme.gradient by the cell's value normalised across the
+ * as a flat-topped hexagon (a filled <polygon> of 6 vertices) coloured along
+ * theme.gradient by the cell's value normalised across the
  * grid's [min,max]. Alternate rows are offset by half a hex width for the classic
  * honeycomb tessellation.
  *
@@ -110,7 +110,7 @@ namespace plot::impl {
 							X.push_back(X.front()); Y.push_back(Y.front());   // close
 							attribute_t ha; ha.color = plot::attribute::color_t{ col };
 							ha.stroke = plot::attribute::stroke_t{1.0f, 1.0f, {}, {}, {}};
-							cv.poly_line(X, Y, ha);
+							cv.polygon(X, Y, ha);
 						}
 					});
 			}, opts);
