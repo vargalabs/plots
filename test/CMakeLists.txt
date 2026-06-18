@@ -9,3 +9,7 @@ add_test(NAME plot_grid COMMAND plot_grid)
 add_executable(plot_new plot_new.cpp)
 target_link_libraries(plot_new PRIVATE plot::plot)
 add_test(NAME plot_new COMMAND plot_new)
+
+add_executable(plot_fill plot_fill.cpp)
+target_link_libraries(plot_fill PRIVATE plot::plot)
+add_test(NAME plot_fill COMMAND plot_fill)

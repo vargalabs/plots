@@ -3,9 +3,9 @@
  *
  * plot::pie(labels, values, opts...) — a deferred view (plot::view) drawing a
  * pie chart, or a donut when plot::donut{r} (inner-radius fraction in (0,1)) is
- * given. Each slice is a CLOSED <polyline> wedge: the arc is segmented into short
- * chords (no new canvas method needed), centre→arc→centre for a pie, or
- * outer-arc→inner-arc for a donut ring. Slice colours cycle theme.series; a
+ * given. Each slice is a FILLED <polygon> wedge: the arc is segmented into short
+ * chords, centre→arc→centre for a pie, or outer-arc→inner-arc for a donut ring.
+ * Slices are filled with the theme colour. Slice colours cycle theme.series; a
  * label is placed at the slice's mid-angle.
  *
  * Built on the #5 view pattern (draws straight into the cell). Dependency-free.
@@ -116,8 +116,10 @@ namespace plot::impl {
 							std::uint32_t col = th.series.empty()? th.fg
 											: th.series[i % th.series.size()];
 							attribute_t pa; pa.color = plot::attribute::color_t{ col };
-							pa.stroke = plot::attribute::stroke_t{1.0f, 1.2f, {}, {}, {}};
-							cv.poly_line(X, Y, pa);
+							// subtle separator stroke in the background colour so
+							// adjacent filled slices read as distinct wedges.
+							pa.stroke = plot::attribute::stroke_t{1.0f, 1.0f, {}, {}, {}};
+							cv.polygon(X, Y, pa);
 
 							// label at the slice mid-angle, just outside the wedge.
 							double am = 0.5*(a0+a1);

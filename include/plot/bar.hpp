@@ -28,6 +28,15 @@
 #include "gr.hpp"
 #include "view.hpp"
 
+#ifndef PLOT_WIREFRAME_DEFINED
+#define PLOT_WIREFRAME_DEFINED
+namespace plot {
+	// outline-only style marker for bar/histogram: stroke in the series colour,
+	// fill="none" — the wire frame of the columns (issue #13).
+	struct wireframe { using value_type = tag::wireframe_t; };
+}
+#endif
+
 namespace plot::impl {
 	template <class... opt_t>
 	struct bar_view {
@@ -45,6 +54,7 @@ namespace plot::impl {
 				const theme_t& th = impl::resolve_theme(o...);
 				auto [title, xl, yl] = impl::texts(o...);
 				const std::size_t n = std::min(labels.size(), values.size());
+				constexpr bool wire = arg::tpos<tag::wireframe_t, opt_t...>::present;
 
 				double vmax = 0.0, vmin = 0.0;
 				for(std::size_t i=0;i<n;++i){
@@ -72,10 +82,21 @@ namespace plot::impl {
 							float yt = py(values[i]);
 							std::uint32_t col = th.series.empty()? th.fg
 											: th.series[i % th.series.size()];
-							attribute_t a; a.color = plot::attribute::color_t{ col };
 							float top = std::min(yt, y0);
 							float hgt = std::abs(y0 - yt);
-							c.rect(cx - bw*0.5f, top, bw, hgt, 0, 0, a);
+							float xl0 = cx - bw*0.5f, xr0 = cx + bw*0.5f;
+							float yb0 = top + hgt;
+							if constexpr( wire ){
+								// outline-only column: fill="none", stroke in series colour.
+								attribute_t a; a.color = plot::attribute::color_t{ col };
+								a.stroke = plot::attribute::stroke_t{1.0f, 1.5f, {}, {}, {}};
+								std::vector<float> X{xl0, xr0, xr0, xl0, xl0};
+								std::vector<float> Y{top, top, yb0, yb0, top};
+								c.poly_line(X, Y, a);
+							} else {
+								attribute_t a; a.color = plot::attribute::color_t{ col };
+								c.rect(xl0, top, bw, hgt, 0, 0, a);
+							}
 						}
 					});
 			}, opts);

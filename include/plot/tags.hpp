@@ -50,5 +50,6 @@ namespace plot::tag {
 	struct levels_t{};    // contour iso-level count
 	struct donut_t{};     // pie inner-radius fraction (0 = full pie)
 	struct hex_t{};       // hexagonal heatmap style marker
+	struct wireframe_t{}; // outline-only bars/bins (no fill) — issue #13
 }
 #endif

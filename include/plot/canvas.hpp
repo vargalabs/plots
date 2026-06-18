@@ -50,6 +50,7 @@ namespace plot::impl {
 		void circle(float cx, float cy, float radius, const attribute_t& attr );
 		void line(float x1, float y1, float x2, float y2, const attribute_t& attr );
 		void poly_line(const std::vector<float>& x, const std::vector<float>& y, const attribute_t& attr );
+		void polygon(const std::vector<float>& x, const std::vector<float>& y, const attribute_t& attr );
 		static std::pair<std::size_t,std::size_t>
 			bounding_box( 	const std::vector<std::string>& x_axis, double angle_x,
 							const std::vector<std::string>& y_axis, double angle_y, std::size_t font_size );
@@ -97,6 +98,7 @@ namespace plot::impl {
 		const std::string rect_ = "<rect x=\"{:.2f}\" y=\"{:.2f}\" width=\"{:.2f}\" height=\"{:.2f}\" rx=\"{:.2f}\" ry=\"{:.2f}\" {}>{}</rect>\n";
 		const std::string line_ = "<line x1=\"{:.2f}\" y1=\"{:.2f}\" x2=\"{:.2f}\" y2=\"{:.2f}\"{}/>\n";
 		const std::string polyline_ = "<polyline points=\"{}\" fill=\"none\"{}/>\n";
+		const std::string polygon_ = "<polygon points=\"{}\"{}>{}</polygon>\n";
 		const std::string circle_ = "<circle cx=\"{:.2f}\" cy=\"{:.2f}\" r=\"{:.2f}\" {}>{}</circle>\n";
 		const std::string text_ = "<text x=\"{:.2f}\" y=\"{:.2f}\"{}>{}</text>\n";
 		const std::string title_ = "<title>{}</title>";
@@ -195,6 +197,25 @@ inline void plot::impl::canvas_t::poly_line(const std::vector<float>& x, const s
 		points += std::format("{:.2f},{:.2f}", x[i], y[i]);
 	}
 	os << fmt(polyline_, points, fmt(stroke_attr_, color, w));
+}
+
+inline void plot::impl::canvas_t::polygon(const std::vector<float>& x, const std::vector<float>& y,
+		const attribute_t& attr){
+	std::string points;
+	const std::size_t n = x.size() < y.size() ? x.size() : y.size();
+	for(std::size_t i=0; i<n; i++){
+		if(i) points += ' ';
+		points += std::format("{:.2f},{:.2f}", x[i], y[i]);
+	}
+
+	std::string _attr, _lbl;
+	if( attr.color )  _attr += fmt(fill_, static_cast<unsigned>(attr.color.value()) );
+	if( attr.stroke ) _attr += fmt(stroke_attr_, attr.color ? static_cast<unsigned>(attr.color.value()) : 0u, attr.stroke->width);
+	if( attr.label )  _lbl = fmt(title_, util::html_escape(attr.label.value()));
+
+	if( attr.href ) os << fmt(href_begin_, attr.href.value());
+		os << fmt(polygon_, points, _attr, _lbl );
+	if( attr.href ) os << fmt(href_end_);
 }
 
 inline void plot::impl::canvas_t::text( const std::string& txt,
