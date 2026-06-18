@@ -40,5 +40,15 @@ int main(){
 		if(out.find("<rect") == std::string::npos) return 2;   // bars
 	}
 
+	// ---- bar ----------------------------------------------------------------
+	{
+		std::vector<std::string> labels{"a","b","c","d"};
+		std::vector<double> vals{3,7,2,5};
+		auto out = render_of(plot::bar(labels, vals, plot::title("bar")));
+		if(!well_formed(out)) return 3;
+		if(out.find("<rect") == std::string::npos) return 4;
+		if(out.find(">a<")   == std::string::npos) return 5;   // category tick label
+	}
+
 	return 0;
 }

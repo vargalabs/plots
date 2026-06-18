@@ -20,4 +20,5 @@
 	#include "view.hpp"
 	// new plot types (issue #6) — each a deferred plot::view built on view.hpp
 	#include "histogram.hpp"
+	#include "bar.hpp"
 #endif
