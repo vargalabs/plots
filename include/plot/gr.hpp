@@ -166,13 +166,16 @@ namespace plot::impl {
 		return s;
 	}
 
-	// shared core: lay out a cartesian panel (bg + panel + grid + axes + labels),
-	// then invoke draw(canvas, px, py) where px/py map domain coords to pixels.
+	// shared core: lay out a cartesian panel (bg + panel + grid + axes + labels)
+	// into the region [ox,ox+width] × [oy,oy+height] of an existing canvas, then
+	// invoke draw(canvas, px, py) where px/py map domain coords to pixels. The
+	// whole panel is wrapped in canvas.group(ox, oy, …) so all local coordinates
+	// run in [0,width]×[0,height] and the group's translate supplies the offset.
 	// Used by both line() and scatter(). Callers pre-transform values (log etc.)
 	// via scale_t::xform before calling px/py.
 	template <class draw_fn>
-	void render_panel(std::ostream& os, const theme_t& th,
-			std::size_t width, std::size_t height, const std::array<float,4>& margin,
+	void render_panel_into(canvas_t& canvas, float ox, float oy,
+			std::size_t width, std::size_t height, const theme_t& th,
 			const scale_t& sx, const scale_t& sy,
 			const std::string& title, const std::string& xlab, const std::string& ylab,
 			const std::vector<std::string>& legend_labels,
@@ -181,11 +184,17 @@ namespace plot::impl {
 		using color_t = plot::attribute::color_t;
 		using stroke_t = plot::attribute::stroke_t;
 
-		canvas_t canvas(os, width, height, margin);
+		attribute_t grp;  // the translate group placing this panel in its cell.
+		canvas.group(static_cast<std::size_t>(ox), static_cast<std::size_t>(oy), grp,
+				[&]() -> void {
 
 		// reserved gutters (px) for the axes/labels/title.
+		const float tick_char = 0.60f * 9.0f;   // Ubuntu Mono tick-label advance at 9px
 		const float left   = 56.0f;
-		const float right  = 14.0f;
+		// widen the right gutter to fit the last x-tick label: the canvas draws it
+		// left-anchored at the rightmost tick, so a fixed gutter clips wide labels.
+		const float right  = std::max(14.0f, sx.labels.empty() ? 14.0f
+				: tick_char * float(sx.labels.back().size()) + 8.0f);
 		const float top    = title.empty() ? 18.0f : 34.0f;
 		const float bottom = 44.0f;
 		const float x0 = left;
@@ -214,7 +223,6 @@ namespace plot::impl {
 		// canvas, so the y labels are placed by their (monospace) width so their
 		// right edge lands `label_gap` px left of the axis — matching the bottom.
 		const float label_gap = 14.0f;
-		const float tick_char = 0.60f * 9.0f;   // Ubuntu Mono advance at 9px
 		for(std::size_t i=0;i<sx.ticks.size();++i){
 			float X = px(sx.ticks[i]);
 			canvas.line(X, y0, X, y0+ph, grid_attr);
@@ -275,6 +283,21 @@ namespace plot::impl {
 						std::size_t(ly + float(i)*14.0f), tx);
 			}
 		}
+
+		}); // close the translate group
+	}
+
+	// thin wrapper: own one <svg> at (width,height) and draw the panel into it.
+	template <class draw_fn>
+	void render_panel(std::ostream& os, const theme_t& th,
+			std::size_t width, std::size_t height, const std::array<float,4>& margin,
+			const scale_t& sx, const scale_t& sy,
+			const std::string& title, const std::string& xlab, const std::string& ylab,
+			const std::vector<std::string>& legend_labels,
+			draw_fn&& draw){
+		canvas_t canvas(os, width, height, margin);
+		render_panel_into(canvas, 0, 0, width, height, th, sx, sy,
+				title, xlab, ylab, legend_labels, std::forward<draw_fn>(draw));
 	}
 
 	// extract width/height/margin from named args, with sensible defaults.

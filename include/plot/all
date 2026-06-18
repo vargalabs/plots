@@ -17,4 +17,14 @@
 	#include "theme.hpp"
 	#include "gr.hpp"
 	#include "heatmap.hpp"
+	#include "view.hpp"
+	// new plot types (issue #6) — each a deferred plot::view built on view.hpp
+	#include "histogram.hpp"
+	#include "bar.hpp"
+	#include "density.hpp"
+	#include "contour.hpp"
+	#include "ohlc.hpp"
+	#include "graph.hpp"
+	#include "pie.hpp"
+	#include "hexbin.hpp"
 #endif

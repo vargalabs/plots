@@ -1,0 +1,33 @@
+<svg viewBox="0 0 560 560"  xmlns="http://www.w3.org/2000/svg">
+<g  transform="translate(0 0)">
+<rect x="0.00" y="0.00" width="560.00" height="560.00" rx="0.00" ry="0.00"  fill="#FDF6E3"></rect>
+<text x="280.00" y="16.00" font-size="13" font-family="Arial, sans-serif" font-weight="bold" fill="#657B83" text-anchor="start">module graph</text>
+<line x1="280.00" y1="54.00" x2="449.00" y2="124.00" stroke="#93A1A1" stroke-width="1.20"/>
+<line x1="280.00" y1="54.00" x2="519.00" y2="293.00" stroke="#93A1A1" stroke-width="1.20"/>
+<line x1="519.00" y1="293.00" x2="280.00" y2="532.00" stroke="#93A1A1" stroke-width="1.20"/>
+<line x1="449.00" y1="462.00" x2="280.00" y2="532.00" stroke="#93A1A1" stroke-width="1.20"/>
+<line x1="280.00" y1="532.00" x2="41.00" y2="293.00" stroke="#93A1A1" stroke-width="1.20"/>
+<line x1="111.00" y1="462.00" x2="519.00" y2="293.00" stroke="#93A1A1" stroke-width="1.20"/>
+<line x1="111.00" y1="462.00" x2="449.00" y2="462.00" stroke="#93A1A1" stroke-width="1.20"/>
+<line x1="111.00" y1="124.00" x2="280.00" y2="54.00" stroke="#93A1A1" stroke-width="1.20"/>
+<line x1="111.00" y1="124.00" x2="111.00" y2="462.00" stroke="#93A1A1" stroke-width="1.20"/>
+<line x1="449.00" y1="124.00" x2="41.00" y2="293.00" stroke="#93A1A1" stroke-width="1.20"/>
+<line x1="519.00" y1="293.00" x2="449.00" y2="462.00" stroke="#93A1A1" stroke-width="1.20"/>
+<circle cx="280.00" cy="54.00" r="7.00"  fill="#268BD2"></circle>
+<text x="280.00" y="18.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#657B83" text-anchor="start">core</text>
+<circle cx="449.00" cy="124.00" r="7.00"  fill="#859900"></circle>
+<text x="476.00" y="99.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#657B83" text-anchor="start">io</text>
+<circle cx="519.00" cy="293.00" r="7.00"  fill="#B58900"></circle>
+<text x="557.00" y="296.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#657B83" text-anchor="start">gr</text>
+<circle cx="449.00" cy="462.00" r="7.00"  fill="#CB4B16"></circle>
+<text x="476.00" y="492.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#657B83" text-anchor="start">heatmap</text>
+<circle cx="280.00" cy="532.00" r="7.00"  fill="#DC322F"></circle>
+<text x="280.00" y="573.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#657B83" text-anchor="start">view</text>
+<circle cx="111.00" cy="462.00" r="7.00"  fill="#D33682"></circle>
+<text x="83.00" y="492.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#657B83" text-anchor="start">theme</text>
+<circle cx="41.00" cy="293.00" r="7.00"  fill="#6C71C4"></circle>
+<text x="2.00" y="296.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#657B83" text-anchor="start">canvas</text>
+<circle cx="111.00" cy="124.00" r="7.00"  fill="#2AA198"></circle>
+<text x="83.00" y="99.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#657B83" text-anchor="start">tags</text>
+</g>
+</svg>

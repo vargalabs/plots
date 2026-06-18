@@ -40,5 +40,16 @@ namespace plot::tag {
 	struct xlog_t{};
 	struct ylog_t{};
 	struct theme_t{};   // per-call theme override (plot::use{...})
+	// deferred-plot composition (plot::view + plot::grid)
+	struct view_t{};    // identifies a deferred view in a variadic grid(...)
+	struct rows_t{};    // grid row count
+	struct cols_t{};    // grid column count
+	// new plot-type named arguments (issue #6)
+	struct bins_t{};      // histogram bin count
+	struct bandwidth_t{}; // KDE bandwidth
+	struct levels_t{};    // contour iso-level count
+	struct hole_t{};      // pie/donut inner-radius hole fraction (0 = full pie)
+	struct hex_t{};       // hexagonal heatmap style marker
+	struct wireframe_t{}; // outline-only bars/bins (no fill) — issue #13
 }
 #endif

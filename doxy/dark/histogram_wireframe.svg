@@ -1,0 +1,61 @@
+<svg viewBox="0 0 640 400"  xmlns="http://www.w3.org/2000/svg">
+<g  transform="translate(0 0)">
+<rect x="0.00" y="0.00" width="640.00" height="400.00" rx="0.00" ry="0.00"  fill="#2E3440"></rect>
+<rect x="56.00" y="34.00" width="570.00" height="322.00" rx="2.00" ry="2.00"  fill="#3B4252"></rect>
+<line x1="56.00" y1="34.00" x2="56.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="56.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">0</text>
+<line x1="151.00" y1="34.00" x2="151.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="151.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">1</text>
+<line x1="246.00" y1="34.00" x2="246.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="246.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">2</text>
+<line x1="341.00" y1="34.00" x2="341.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="341.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">3</text>
+<line x1="436.00" y1="34.00" x2="436.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="436.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">4</text>
+<line x1="531.00" y1="34.00" x2="531.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="531.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">5</text>
+<line x1="626.00" y1="34.00" x2="626.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="626.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">6</text>
+<line x1="56.00" y1="356.00" x2="626.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="36.00" y="359.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">0</text>
+<line x1="56.00" y1="291.60" x2="626.00" y2="291.60" stroke="#434C5E" stroke-width="0.50"/>
+<text x="31.00" y="294.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">50</text>
+<line x1="56.00" y1="227.20" x2="626.00" y2="227.20" stroke="#434C5E" stroke-width="0.50"/>
+<text x="25.00" y="230.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">100</text>
+<line x1="56.00" y1="162.80" x2="626.00" y2="162.80" stroke="#434C5E" stroke-width="0.50"/>
+<text x="25.00" y="165.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">150</text>
+<line x1="56.00" y1="98.40" x2="626.00" y2="98.40" stroke="#434C5E" stroke-width="0.50"/>
+<text x="25.00" y="101.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">200</text>
+<line x1="56.00" y1="34.00" x2="626.00" y2="34.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="25.00" y="37.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">250</text>
+<line x1="56.00" y1="34.00" x2="56.00" y2="356.00" stroke="#4C566A" stroke-width="1.20"/>
+<line x1="56.00" y1="356.00" x2="626.00" y2="356.00" stroke="#4C566A" stroke-width="1.20"/>
+<text x="341.00" y="18.00" font-size="13" font-family="Arial, sans-serif" font-weight="bold" fill="#D8DEE9" text-anchor="start">histogram (wireframe)</text>
+<text x="341.00" y="392.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#D8DEE9" text-anchor="start">value</text>
+<text x="14.00" y="195.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#D8DEE9" transform=" rotate(270 14 195)" text-anchor="start">count</text>
+<polyline points="145.69,350.85 161.85,350.85 161.85,356.00 145.69,356.00 145.69,350.85" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="162.85,345.70 179.01,345.70 179.01,356.00 162.85,356.00 162.85,345.70" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="180.01,337.97 196.18,337.97 196.18,356.00 180.01,356.00 180.01,337.97" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="197.18,317.36 213.34,317.36 213.34,356.00 197.18,356.00 197.18,317.36" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="214.34,291.60 230.50,291.60 230.50,356.00 214.34,356.00 214.34,291.60" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="231.50,264.55 247.66,264.55 247.66,356.00 231.50,356.00 231.50,264.55" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="248.66,223.34 264.83,223.34 264.83,356.00 248.66,356.00 248.66,223.34" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="265.83,173.10 281.99,173.10 281.99,356.00 265.83,356.00 265.83,173.10" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="282.99,187.27 299.15,187.27 299.15,356.00 282.99,356.00 282.99,187.27" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="300.15,109.99 316.31,109.99 316.31,356.00 300.15,356.00 300.15,109.99" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="317.31,116.43 333.48,116.43 333.48,356.00 317.31,356.00 317.31,116.43" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="334.48,111.28 350.64,111.28 350.64,356.00 334.48,356.00 334.48,111.28" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="351.64,84.23 367.80,84.23 367.80,356.00 351.64,356.00 351.64,84.23" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="368.80,155.07 384.96,155.07 384.96,356.00 368.80,356.00 368.80,155.07" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="385.96,173.10 402.13,173.10 402.13,356.00 385.96,356.00 385.96,173.10" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="403.13,189.85 419.29,189.85 419.29,356.00 403.13,356.00 403.13,189.85" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="420.29,241.37 436.45,241.37 436.45,356.00 420.29,356.00 420.29,241.37" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="437.45,282.58 453.61,282.58 453.61,356.00 437.45,356.00 437.45,282.58" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="454.61,289.02 470.78,289.02 470.78,356.00 454.61,356.00 454.61,289.02" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="471.78,328.95 487.94,328.95 487.94,356.00 471.78,356.00 471.78,328.95" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="488.94,340.54 505.10,340.54 505.10,356.00 488.94,356.00 488.94,340.54" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="506.10,345.70 522.26,345.70 522.26,356.00 506.10,356.00 506.10,345.70" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="523.26,354.71 539.43,354.71 539.43,356.00 523.26,356.00 523.26,354.71" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+<polyline points="540.43,353.42 556.59,353.42 556.59,356.00 540.43,356.00 540.43,353.42" fill="none" stroke="#88C0D0" stroke-width="1.50"/>
+</g>
+</svg>

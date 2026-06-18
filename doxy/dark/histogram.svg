@@ -1,0 +1,61 @@
+<svg viewBox="0 0 640 400"  xmlns="http://www.w3.org/2000/svg">
+<g  transform="translate(0 0)">
+<rect x="0.00" y="0.00" width="640.00" height="400.00" rx="0.00" ry="0.00"  fill="#2E3440"></rect>
+<rect x="56.00" y="34.00" width="570.00" height="322.00" rx="2.00" ry="2.00"  fill="#3B4252"></rect>
+<line x1="56.00" y1="34.00" x2="56.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="56.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">0</text>
+<line x1="151.00" y1="34.00" x2="151.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="151.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">1</text>
+<line x1="246.00" y1="34.00" x2="246.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="246.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">2</text>
+<line x1="341.00" y1="34.00" x2="341.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="341.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">3</text>
+<line x1="436.00" y1="34.00" x2="436.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="436.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">4</text>
+<line x1="531.00" y1="34.00" x2="531.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="531.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">5</text>
+<line x1="626.00" y1="34.00" x2="626.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="626.00" y="370.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">6</text>
+<line x1="56.00" y1="356.00" x2="626.00" y2="356.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="36.00" y="359.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">0</text>
+<line x1="56.00" y1="291.60" x2="626.00" y2="291.60" stroke="#434C5E" stroke-width="0.50"/>
+<text x="31.00" y="294.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">50</text>
+<line x1="56.00" y1="227.20" x2="626.00" y2="227.20" stroke="#434C5E" stroke-width="0.50"/>
+<text x="25.00" y="230.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">100</text>
+<line x1="56.00" y1="162.80" x2="626.00" y2="162.80" stroke="#434C5E" stroke-width="0.50"/>
+<text x="25.00" y="165.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">150</text>
+<line x1="56.00" y1="98.40" x2="626.00" y2="98.40" stroke="#434C5E" stroke-width="0.50"/>
+<text x="25.00" y="101.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">200</text>
+<line x1="56.00" y1="34.00" x2="626.00" y2="34.00" stroke="#434C5E" stroke-width="0.50"/>
+<text x="25.00" y="37.00" font-size="9" font-family="Ubuntu Mono, monospace" font-weight="normal" fill="#D8DEE9" text-anchor="start">250</text>
+<line x1="56.00" y1="34.00" x2="56.00" y2="356.00" stroke="#4C566A" stroke-width="1.20"/>
+<line x1="56.00" y1="356.00" x2="626.00" y2="356.00" stroke="#4C566A" stroke-width="1.20"/>
+<text x="341.00" y="18.00" font-size="13" font-family="Arial, sans-serif" font-weight="bold" fill="#D8DEE9" text-anchor="start">histogram</text>
+<text x="341.00" y="392.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#D8DEE9" text-anchor="start">value</text>
+<text x="14.00" y="195.00" font-size="10" font-family="Arial, sans-serif" font-weight="normal" fill="#D8DEE9" transform=" rotate(270 14 195)" text-anchor="start">count</text>
+<rect x="145.69" y="350.85" width="16.16" height="5.15" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="162.85" y="345.70" width="16.16" height="10.30" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="180.01" y="337.97" width="16.16" height="18.03" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="197.18" y="317.36" width="16.16" height="38.64" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="214.34" y="291.60" width="16.16" height="64.40" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="231.50" y="264.55" width="16.16" height="91.45" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="248.66" y="223.34" width="16.16" height="132.66" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="265.83" y="173.10" width="16.16" height="182.90" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="282.99" y="187.27" width="16.16" height="168.73" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="300.15" y="109.99" width="16.16" height="246.01" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="317.31" y="116.43" width="16.16" height="239.57" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="334.48" y="111.28" width="16.16" height="244.72" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="351.64" y="84.23" width="16.16" height="271.77" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="368.80" y="155.07" width="16.16" height="200.93" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="385.96" y="173.10" width="16.16" height="182.90" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="403.13" y="189.85" width="16.16" height="166.15" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="420.29" y="241.37" width="16.16" height="114.63" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="437.45" y="282.58" width="16.16" height="73.42" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="454.61" y="289.02" width="16.16" height="66.98" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="471.78" y="328.95" width="16.16" height="27.05" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="488.94" y="340.54" width="16.16" height="15.46" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="506.10" y="345.70" width="16.16" height="10.30" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="523.26" y="354.71" width="16.16" height="1.29" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+<rect x="540.43" y="353.42" width="16.16" height="2.58" rx="0.00" ry="0.00"  fill="#88C0D0"></rect>
+</g>
+</svg>

@@ -26,6 +26,18 @@ if(PLOTS_BUILD_EXAMPLES)
 	add_subdirectory(examples)
 endif()
 
+# Doxygen single-page documentation (output under doxy/docs/doxygen/html).
+# Build with: cmake --build build --target docs-doxygen
+find_program(DOXYGEN_EXECUTABLE doxygen)
+if(DOXYGEN_EXECUTABLE)
+	add_custom_target(docs-doxygen
+		COMMAND ${DOXYGEN_EXECUTABLE} Doxyfile
+		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/doxy
+		COMMENT "Generating Doxygen documentation"
+		VERBATIM
+	)
+endif()
+
 include(GNUInstallDirs)
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 install(TARGETS plot EXPORT plot-targets

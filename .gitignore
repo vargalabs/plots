@@ -1,11 +1,21 @@
 # build
 /build/
+/build-*/
 /cmake-build-*/
 *.o
 *.a
 
 # rendered output
 *.svg
+# but keep the example SVGs embedded in the Doxygen mainpage
+!/doxy/images/*.svg
+# and the theme-aware gallery renders (dark + light)
+!/doxy/dark/*.svg
+!/doxy/light/*.svg
+
+# generated documentation
+/doxy/docs/doxygen/
+/doxy/*.log
 
 # editor / OS
 .theia/

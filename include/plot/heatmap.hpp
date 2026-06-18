@@ -22,6 +22,7 @@
 #include <cstddef>
 #include <fstream>
 #include <ostream>
+#include <sstream>
 #include <format>
 
 #include "attributes.hpp"
@@ -167,10 +168,14 @@ namespace plot::impl {
 	}
 }
 
-namespace plot {
-	// ---- the heatmap driver (writes a standalone .svg to an ostream) ----------
+namespace plot::impl {
+	// ---- region-draw core: render the heatmap content at its natural layout,
+	// starting at the canvas origin, and return the natural (width,height). The
+	// caller wraps this in a translate/scale group to place/fit it. Both the
+	// ostream heatmap driver and the deferred heatmap_view::draw_into use it.
 	template <class T, class... arg_t>
-	void heatmap(std::ostream& os, const T& data, arg_t... args ) {
+	std::pair<std::size_t,std::size_t>
+	heatmap_render(impl::canvas_t& canvas, const T& data, arg_t... args ) {
 		using title_t    = typename arg::tpos<tag::title_t, arg_t...>;
 		using footnote_t = typename arg::tpos<tag::footnote_t, arg_t...>;
 		using legend_t   = typename arg::tpos<tag::legend_t, arg_t...>;
@@ -178,7 +183,6 @@ namespace plot {
 		using axisy_t    = typename arg::tpos<tag::axis::y_t, arg_t...>;
 		using width_t    = typename arg::tpos<tag::width_t, arg_t...>;
 		using height_t   = typename arg::tpos<tag::height_t, arg_t...>;
-		using margin_t   = typename arg::tpos<tag::margin_t, arg_t...>;
 
 		static_assert( axisx_t::present, "x axis must be specified..." );
 		static_assert( axisy_t::present, "y axis must be specified..." );
@@ -186,18 +190,27 @@ namespace plot {
 		auto tuple = std::forward_as_tuple(args...);
 
 		std::array<float,4> margin{5,5,5,5};
+		using margin_t = typename arg::tpos<tag::margin_t, arg_t...>;
 		if constexpr( margin_t::present )
 			margin = std::get<margin_t::position>( tuple ).value;
 
 		auto x_axis = std::get<axisx_t::position>( tuple );
 		auto y_axis = std::get<axisy_t::position>( tuple );
 
+		// when a title is present, push the x-axis (and thus the grid below it)
+		// down by a band so the title sits above the ticks instead of overlapping
+		// the top of the x-axis.
+		if constexpr( title_t::present ){
+			x_axis.position = position{ std::get<std::size_t>(x_axis.position->x),
+				std::get<std::size_t>(x_axis.position->y) + std::size_t{14} };
+		}
+
 		float offset_x = std::get<std::size_t>(x_axis.position->x) - .5f * x_axis.grid;
 		float offset_y = std::get<std::size_t>(x_axis.position->y) + .5f * y_axis.grid;
 		// when y axis label position is not preset, compute it from x layout
 		float pos_x = x_axis.dx.back() + 1.5f * x_axis.grid + offset_x;
 		y_axis.position = position{static_cast<std::size_t>(pos_x), static_cast<std::size_t>(offset_y + .5f * y_axis.grid) };
-		// compute size when not set
+		// compute natural size (width/height override only the reported extent).
 		std::size_t width, height;
 	   	if constexpr( width_t::present )
 			width = std::get<width_t::position>( tuple ).value;
@@ -210,13 +223,23 @@ namespace plot {
 
 		const theme_t& th = impl::resolve_theme(args...);
 
-		auto canvas = plot::impl::canvas_t(os, width, height + 10, margin);
-		// theme background spanning the whole canvas (painted first, under all).
+		// theme background spanning the whole region (painted first, under all).
 		{ plot::attribute::element_t bg; bg.color = plot::attribute::color_t{ th.bg };
 		  canvas.rect(0, 0, static_cast<float>(width), static_cast<float>(height + 10), 0, 0, bg); }
+		// colour the axis tick labels with the theme foreground — otherwise the
+		// <text> inherits the SVG default (black), invisible on a dark theme.
+		x_axis.color = plot::attribute::color_t{ th.fg };
+		y_axis.color = plot::attribute::color_t{ th.fg };
 		canvas << x_axis; canvas << y_axis;
 
-		if constexpr (title_t::present)    canvas << std::get<title_t::position>( tuple );
+		if constexpr (title_t::present) {
+			auto title = std::get<title_t::position>( tuple );
+			if( !title.color ) title.color = plot::attribute::color_t{ th.fg };
+			// place the title sensibly when the caller didn't (e.g. plot::title("…")
+			// inside a grid) — otherwise it would render at the {0,0} fallback.
+			if( !title.position ) title.position = position{ std::size_t{4}, std::size_t{10} };
+			canvas << title;
+		}
 		if constexpr (footnote_t::present) canvas << std::get<footnote_t::position>( tuple );
 
 		plot::attribute::color_t palette{ 0x4060FF };
@@ -228,6 +251,29 @@ namespace plot {
 		impl::heatmap(canvas,
 				offset_x, offset_y, x_axis.dx, y_axis.dy,
 				.9f * x_axis.grid, .9f * y_axis.grid, data, palette, th.gradient );
+		return { width, height + 10 };
+	}
+}
+
+namespace plot {
+	// ---- the heatmap driver (writes a standalone .svg to an ostream) ----------
+	template <class T, class... arg_t>
+	void heatmap(std::ostream& os, const T& data, arg_t... args ) {
+		// two-pass: render once into a throwaway stream to learn the natural size,
+		// then open the real canvas at that size and render for real. Cheap (the
+		// grids here are small) and keeps the single layout source of truth in
+		// heatmap_render — no size formula duplicated across call sites.
+		std::array<float,4> margin{5,5,5,5};
+		using margin_t = typename arg::tpos<tag::margin_t, arg_t...>;
+		auto mtuple = std::forward_as_tuple(args...);
+		if constexpr( margin_t::present )
+			margin = std::get<margin_t::position>( mtuple ).value;
+		std::pair<std::size_t,std::size_t> sz;
+		{ std::ostringstream probe;
+		  impl::canvas_t scratch(probe, 1, 1, margin);
+		  sz = impl::heatmap_render(scratch, data, args...); }
+		impl::canvas_t canvas(os, sz.first, sz.second, margin);
+		impl::heatmap_render(canvas, data, args...);
 	}
 
 	// filename convenience: opens a truncating ofstream and renders into it.
