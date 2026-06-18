@@ -75,6 +75,19 @@ target_link_libraries(my_app PRIVATE plot::plot)
 - `examples/heatmap` → `heatmap.svg`
 - `examples/dashboard` → `dashboard.svg` (a 2×2 `view`/`grid` figure)
 
+## Gallery
+
+Every shipping driver, rendered with the Solarized theme. Each image follows your
+GitHub color scheme (light or dark) automatically.
+
+|  |  |  |
+|:-:|:-:|:-:|
+| <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/line_chart.svg"><img src="doxy/light/line_chart.svg" width="240"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/scatter.svg"><img src="doxy/light/scatter.svg" width="240"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/heatmap.svg"><img src="doxy/light/heatmap.svg" width="240"></picture> |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/histogram.svg"><img src="doxy/light/histogram.svg" width="240"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/bar.svg"><img src="doxy/light/bar.svg" width="240"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/density.svg"><img src="doxy/light/density.svg" width="240"></picture> |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/contour.svg"><img src="doxy/light/contour.svg" width="240"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/ohlc.svg"><img src="doxy/light/ohlc.svg" width="240"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/graph.svg"><img src="doxy/light/graph.svg" width="240"></picture> |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/pie.svg"><img src="doxy/light/pie.svg" width="240"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/donut.svg"><img src="doxy/light/donut.svg" width="240"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/hexbin.svg"><img src="doxy/light/hexbin.svg" width="240"></picture> |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="doxy/dark/dashboard.svg"><img src="doxy/light/dashboard.svg" width="240"></picture> |  |  |
+
 ## Documentation
 
 Full API reference: [vargalabs.github.io/plots](https://vargalabs.github.io/plots/)

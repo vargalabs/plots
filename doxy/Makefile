@@ -8,6 +8,9 @@ OUT     = docs/doxygen/html
 
 all:
 	$(DOXY) Doxyfile 2>&1 | tee doxygen.log
+	# doxygen 1.9.1 flattens HTML_EXTRA_FILES directories, so copy the
+	# theme-aware gallery image dirs into the html output ourselves.
+	cp -r dark light $(OUT)/
 
 view: all
 	xdg-open $(OUT)/index.html
