@@ -95,6 +95,67 @@ A throughput field over a payload-size × thread-count grid, continuous gradient
 
 @image html heatmap.svg "Heatmap of a throughput field with continuous gradient"
 
+## Composing figures — `view` & `grid`
+
+Each driver has a no-`os`/no-filename form that *defers* the render: it captures
+the data and named options by value and returns a movable, composable **`view`**
+instead of writing anything.
+
+```cpp
+auto v = plot::line(xs, ys, plot::title("series A"));   // a view, nothing written yet
+v.save("series.svg");                                   // standalone <svg> at natural size
+v.render(os);                                           // … or into your own ostream
+```
+
+So `plot::line(xs, ys, opts...)` returns a view, and the familiar
+`plot::line("series.svg", xs, ys, opts...)` (leading filename/`ostream`) is just
+sugar for `plot::line(xs, ys, opts...).save("series.svg")`.
+
+`plot::grid(file|os, …)` tiles several views into a **single figure**. It is
+variadic and order-independent: it collects every `view` argument (in order) and
+resolves `plot::rows{r}` / `plot::cols{c}` / `plot::width{...}` /
+`plot::height{...}` / `plot::use{...}` by tag, in any order. Omit `rows`/`cols`
+and it lays out automatically (`cols = ceil(sqrt(N))`).
+
+```cpp
+plot::grid("dashboard.svg",
+    plot::rows{2}, plot::cols{2},
+    plot::line   (xs, ys,  plot::title("series A"), plot::xlabel{"t"}, plot::ylabel{"v"}),
+    plot::scatter(sx, sy,  plot::title("scatter: y ~ 0.7x + noise")),
+    plot::heatmap(field,   plot::axis::x(sizes), plot::axis::y(threads),
+                           plot::title("throughput MB/s")),
+    plot::line   (xs, {{ "rising", ys }, { "falling", ys2 }}, plot::title("two series")),
+    plot::width{1200}, plot::height{800});
+```
+
+@image html dashboard.svg "A 2×2 figure: line, scatter, heatmap and multi-series line tiled by plot::grid"
+
+**Themes.** A `view` carries no theme of its own: at render time each view
+resolves the process-global `plot::theme(...)` default — unless it was built with
+a per-view `plot::use{ ... }` override. `plot::grid` likewise paints the figure
+background from the resolved theme (its own `plot::use{...}`, else the global
+default), so one `plot::theme(...)` call styles the whole dashboard.
+
+See `examples/dashboard.cpp` for the program that emits the figure above.
+
+## Plot types
+
+The shipping drivers, plus the gallery still being filled out. Every one has a
+deferred `view` form (no leading `os`/filename) and the filename/`ostream` sugar
+shown above.
+
+- `plot::line(xs, ys, opts...)` — line series (multi-series: `plot::line(xs, {{"label", data}, …}, opts...)`).
+- `plot::scatter(xs, ys, opts...)` — scatter of points.
+- `plot::heatmap(mat, plot::axis::x(xs), plot::axis::y(ys), opts...)` — 2-D grid colored by cell value.
+- `plot::histogram(values, opts...)` — binned frequency *(coming in the gallery)*.
+- `plot::bar(labels, values, opts...)` — categorical bars *(coming in the gallery)*.
+- `plot::density(values, opts...)` — smoothed (KDE) distribution *(coming in the gallery)*.
+- `plot::contour(mat, opts...)` — iso-level contours of a scalar field *(coming in the gallery)*.
+- `plot::ohlc(t, open, high, low, close, opts...)` — open/high/low/close candles *(coming in the gallery)*.
+- `plot::graph(nodes, edges, opts...)` — node/edge network layout *(coming in the gallery)*.
+- `plot::pie(labels, values, opts...)` — proportional wedges *(coming in the gallery)*.
+- `plot::hexbin(xs, ys, opts...)` — hexagonal density binning *(coming in the gallery)*.
+
 ## Building & integrating
 
 ```sh
